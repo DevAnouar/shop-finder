@@ -1,4 +1,4 @@
-package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder;
+package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
