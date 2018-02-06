@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "frontend",
+  "name": "Shop Finder Application Frontend - Hidden Founders Coding Challenge",
   "icons": [
     {
       "src": "favicon.ico",
