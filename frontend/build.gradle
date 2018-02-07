@@ -7,3 +7,5 @@ version = "0.0.1"
 task start(type: YarnTask) {
     args = ['start']
 }
+
+start.dependsOn(yarn_install)
