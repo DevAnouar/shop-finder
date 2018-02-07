@@ -8,4 +8,8 @@ task start(type: YarnTask) {
     args = ['start']
 }
 
+task build(type: YarnTask) {
+    args = ['build']
+}
+
 start.dependsOn(yarn_install)
