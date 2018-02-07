@@ -12,5 +12,9 @@ task build(type: YarnTask) {
     args = ['build']
 }
 
+task test(type: YarnTask) {
+    args = ['test']
+}
+
 start.dependsOn(yarn_install)
 build.dependsOn(yarn_install)
