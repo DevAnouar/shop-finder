@@ -16,5 +16,9 @@ task test(type: YarnTask) {
     args = ['test']
 }
 
+task clean(type: Delete) {
+    delete "build"
+}
+
 start.dependsOn(yarn_install)
 build.dependsOn(yarn_install)
