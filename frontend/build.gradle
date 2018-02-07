@@ -13,3 +13,4 @@ task build(type: YarnTask) {
 }
 
 start.dependsOn(yarn_install)
+build.dependsOn(yarn_install)
