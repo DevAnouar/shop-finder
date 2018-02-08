@@ -28,3 +28,11 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+task moveFrontendToResources(type: Copy) {
+    from "${project.projectDir}/frontend/build/"
+    into "${project.projectDir}/src/main/resources/static/"
+}
+
+moveFrontendToResources.dependsOn('frontend:bundle')
+processResources.dependsOn(moveFrontendToResources)
