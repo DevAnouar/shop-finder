@@ -4,12 +4,12 @@ plugins {
 
 version = "0.0.1"
 
-task start(type: YarnTask) {
-    args = ['start']
+task bundle(type: YarnTask) {
+    args = ['build']
 }
 
-task build(type: YarnTask) {
-    args = ['build']
+task start(type: YarnTask) {
+    args = ['start']
 }
 
 task test(type: YarnTask) {
@@ -21,4 +21,4 @@ task clean(type: Delete) {
 }
 
 start.dependsOn(yarn_install)
-build.dependsOn(yarn_install)
+bundle.dependsOn(yarn_install)
