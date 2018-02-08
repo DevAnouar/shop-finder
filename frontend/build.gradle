@@ -2,7 +2,8 @@ plugins {
     id "com.moowork.node" version "1.2.0"
 }
 
-version = "0.0.1"
+group = 'com.hidden_founders.jobs.software_engineer_java.coding_challenge'
+version = "0.0.1-SNAPSHOT"
 
 node {
     nodeModulesDir = file("${project.projectDir}")

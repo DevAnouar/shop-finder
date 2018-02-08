@@ -22,6 +22,7 @@ repositories {
 	mavenCentral()
 }
 
+buildDir = '../build'
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
@@ -30,9 +31,9 @@ dependencies {
 }
 
 task moveFrontendToResources(type: Copy) {
-    from "${project.projectDir}/frontend/build/"
+    from "../frontend/build/"
     into "${project.projectDir}/src/main/resources/static/"
 }
 
-moveFrontendToResources.dependsOn('frontend:bundle')
+moveFrontendToResources.dependsOn(':frontend:bundle')
 processResources.dependsOn(moveFrontendToResources)
