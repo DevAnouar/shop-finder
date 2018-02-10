@@ -29,7 +29,7 @@ class App extends Component {
       : !this.props.isGeolocationEnabled
         ? <p>Geolocation is not enabled</p>
         : this.props.coords
-          ? <p>{this.props.coords.longitude}, {this.props.coords.latitude}</p>
+          ? <p>{this.props.coords.latitude}, {this.props.coords.longitude}</p>
           : <p>Getting the location data&hellip;</p>;
 
     return (
@@ -49,7 +49,7 @@ class App extends Component {
 
 export default geolocated({
   positionOptions: {
-    enableHighAccuracy: false,
+    enableHighAccuracy: true,
   },
   userDecisionTimeout: 5000,
 })(App);
