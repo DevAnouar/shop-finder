@@ -58,7 +58,7 @@ The jar will be available in `./build/libs/shop-finder-0.0.1-SNAPSHOT.jar`
 You can then launch it with:
 
 ```
-java -jar -Dspring.profiles.active=production backend/build/libs/shop-finder-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=production build/libs/shop-finder-0.0.1-SNAPSHOT.jar
 ```
 
 NB: The frontend can be build alone with the `bundle` task so you can use `frontend:bundle`.
@@ -74,7 +74,3 @@ The backend `build` task depends on the frontend `bundle` task.
 ## Authors
 
 * *Anouar Bellakha* - You can reach me at anouar.bellakha@gmail.com
-
-## Acknowledgments
-
-This project is developed as a solution to the web coding challenge, which is the 2nd step of the job recruitment process at Hidden Founders.
