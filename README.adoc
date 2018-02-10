@@ -1,0 +1,80 @@
+# Shop Finder App
+
+This app lists shops nearby the current location of the user.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+The Java code is available in the backend sub-project. The frontend sub-project contains the javascript code.
+
+### Running the backend (recommended)
+
+The recommended way to launch the server is to use your favorite java IDE.The main method of the application is in the `ShopFinderApplication` class.
+
+### Running the frontend (recommended)
+
+**You will need node 8.9.4+ and yarn to run the dev server and build the project**
+
+I strongly recommend that you install yarn on your development machine.
+
+After running the backend, in the project directory you can run:
+
+```
+./gradlew frontend:start
+```
+
+This command runs the frontend in development mode. +
+Open http://localhost:3000[http://localhost:3000] to view it in the browser
+
+### Alternatives for running the projects
+
+There is also a gradle task to run the spring server. +
+In the project directory you can run:
+
+```
+./gradlew frontend:bootRun
+```
+
+This command runs the backend in development mode.
+
+### Hot reloading
+
+With the dev server running, saving your javascript or css files will automatically trigger the hot reloading
+(without browser refresh) of the application.
+
+For the backend, recompiling the project in your IDE will trigger the reloading of the application's class loader.
+
+## Deployment
+
+This command will build the frontend and include it in the jar.
+
+```
+./gradlew clean build
+```
+
+The jar will be available in `./build/libs/shop-finder-0.0.1-SNAPSHOT.jar`
+
+You can then launch it with:
+
+```
+java -jar -Dspring.profiles.active=production backend/build/libs/shop-finder-0.0.1-SNAPSHOT.jar
+```
+
+NB: The frontend can be build alone with the `bundle` task so you can use `frontend:bundle`.
+The backend `build` task depends on the frontend `bundle` task.
+
+## Built With
+
+* https://projects.spring.io/spring-boot/[Spring Boot] - The backend framework used
+* https://gradle.org/[Gradle] - Dependency Management and Build tool
+* https://github.com/facebook/create-react-app[Create React App] - Used to generate React app as the frontend with no build configuration
+* https://github.com/srs/gradle-node-plugin[com.moowork.node] - Gradle plugin for executing node scripts
+
+## Authors
+
+* *Anouar Bellakha* - You can reach me at anouar.bellakha@gmail.com
+
+## Acknowledgments
+
+This project is developed as a solution to the web coding challenge, which is the 2nd step of the job recruitment process at Hidden Founders.
