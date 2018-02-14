@@ -14,7 +14,7 @@ public class MongoFacade {
     @Autowired
     private ShopsRepository shopsRepository;
 
-    public List<ShopEntity> findShopsWithin(double centerLatitude, double centerLongitude, double radius) {
-        return shopsRepository.findByLocationWithin(new Circle(centerLongitude, centerLatitude, radius/111.12));
+    public List<ShopEntity> findShopsWithin(double centerLatitude, double centerLongitude, double radiusInKm) {
+        return shopsRepository.findByLocationWithin(new Circle(centerLongitude, centerLatitude, radiusInKm/111.12));
     }
 }
