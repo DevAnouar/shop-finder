@@ -1,7 +1,5 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model;
 
-import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.geolocation.Location;
-
 public class Shop {
     private String picture;
     private String name;
