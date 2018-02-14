@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "shops")
-class ShopEntity {
+public class ShopEntity {
 
     @Id
     private ObjectId id;
