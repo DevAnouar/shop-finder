@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ShopsRepository extends CrudRepository<ShopEntity, String> {
+interface ShopsRepository extends CrudRepository<ShopEntity, String> {
     List<ShopEntity> findByLocationWithin(Circle circle);
 }

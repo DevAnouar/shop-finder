@@ -3,9 +3,11 @@ package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfin
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model.Location;
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
 
+@ComponentScan
 public class GeographicalCircleArea {
     private Location center;
     private double radius;
