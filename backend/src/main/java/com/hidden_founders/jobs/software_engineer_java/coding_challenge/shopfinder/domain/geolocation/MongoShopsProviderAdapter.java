@@ -9,11 +9,15 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @ComponentScan(basePackages = "com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.tech_services.persistence")
-@Component
+@Component("shopsProviderAdapter")
 class MongoShopsProviderAdapter implements IShopsProviderAdapter {
 
-    @Autowired
     private MongoFacade mongoFacade;
+
+    @Autowired
+    public MongoShopsProviderAdapter(MongoFacade mongoFacade) {
+        this.mongoFacade = mongoFacade;
+    }
 
     @Override
     public List<Shop> findShopsWithin(GeographicalCircleArea geographicalCircleArea) {
