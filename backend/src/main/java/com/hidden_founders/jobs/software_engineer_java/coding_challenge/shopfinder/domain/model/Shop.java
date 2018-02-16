@@ -54,4 +54,15 @@ public class Shop {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return "Shop{" + '\n' +
+                "\tpicture:" + picture + '\n' +
+                "\tname:" + name + '\n' +
+                "\temail:" + email + '\n' +
+                "\tcity:" + city + '\n' +
+                "\tlocation:" + location + '\n' +
+                '}';
+    }
 }
