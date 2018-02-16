@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component("area")
 @Scope(value = "prototype")
-public class GeographicalCircleArea {
+class GeographicalCircleArea {
     private Location center;
     private double radius;
 
