@@ -10,6 +10,7 @@ public class GeographicalCircleArea {
     private Location center;
     private double radius;
 
+    @Autowired
     private IShopsProviderAdapter shopsProviderAdapter;
 
     GeographicalCircleArea(double centerLatitude, double centerLongitude, double radius) {
