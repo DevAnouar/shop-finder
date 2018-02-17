@@ -27,7 +27,7 @@ buildDir = '../build'
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
-	compile('org.modelmapper:modelmapper')
+	compile('org.modelmapper:modelmapper:1.1.0')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
