@@ -10,5 +10,5 @@ public abstract class ModelToDTOMapper {
         return modelMapper;
     }
 
-    public abstract DTO map(Object model);
+    abstract DTO map(Object model);
 }

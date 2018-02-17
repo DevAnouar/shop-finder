@@ -2,12 +2,12 @@ package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfin
 
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.presentation.dto.DTO;
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.presentation.dto.ShopDTO;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service("modelToDTOMapper")
-public class ShopToDTOMapper extends ModelToDTOMapper {
+@Component
+class ShopToDTOMapper extends ModelToDTOMapper {
 
-    public DTO map(Object shop) {
+    DTO map(Object shop) {
         return getMapper().map(shop, ShopDTO.class);
     }
 }
