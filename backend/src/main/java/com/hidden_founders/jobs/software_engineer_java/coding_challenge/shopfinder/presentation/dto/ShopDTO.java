@@ -1,8 +1,12 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.presentation.dto;
 
-public class ShopDTO {
+import java.io.Serializable;
+
+public class ShopDTO implements Serializable {
     private String name;
     private String picture;
+
+    public ShopDTO() {}
 
     public ShopDTO(String name, String picture) {
         this.name = name;
@@ -23,13 +27,5 @@ public class ShopDTO {
 
     public void setPicture(String picture) {
         this.picture = picture;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "name:" + name + ' ' +
-                ", picture:" + picture +
-                '}';
     }
 }
