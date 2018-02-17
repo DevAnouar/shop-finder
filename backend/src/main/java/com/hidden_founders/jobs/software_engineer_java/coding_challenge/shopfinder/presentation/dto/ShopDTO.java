@@ -1,6 +1,6 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.presentation.dto;
 
-import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.tech_services.object_mapping.DTO;
+import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.object_mapping.DTO;
 
 public class ShopDTO implements DTO {
     private String name;

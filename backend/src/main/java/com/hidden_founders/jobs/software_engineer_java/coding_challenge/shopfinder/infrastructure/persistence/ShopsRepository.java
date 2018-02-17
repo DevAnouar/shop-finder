@@ -1,4 +1,4 @@
-package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.tech_services.persistence;
+package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.persistence;
 
 import org.springframework.data.geo.Circle;
 import org.springframework.data.repository.CrudRepository;
