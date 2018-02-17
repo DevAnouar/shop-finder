@@ -1,7 +1,6 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.tech_services.object_mapping;
 
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model.Shop;
-import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.presentation.dto.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
