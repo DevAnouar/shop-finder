@@ -1,6 +1,6 @@
 import React from "react";
 import ShopCard from "./ShopCard";
-import { Card, Container } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 
 const ShopCardList = ({ shops }) => {
   const shopItems = shops.map(shop => {
@@ -8,11 +8,9 @@ const ShopCardList = ({ shops }) => {
   });
 
   return (
-    <Container>
       <Card.Group centered itemsPerRow="4">
         {shopItems}
       </Card.Group>
-    </Container>
   );
 };
 
