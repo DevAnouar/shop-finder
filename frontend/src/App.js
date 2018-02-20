@@ -3,14 +3,29 @@ import { geolocated } from 'react-geolocated';
 import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+import ShopCardList from "./components/ShopCardList";
+import HomePageHeading from "./components/HomePageHeading"
+import HomePageMenu from "./components/HomePageMenu";
+import {Dimmer, Loader, Segment} from "semantic-ui-react";
 
 class App extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      hello: "Hello React!"
+      dimmerActive: true,
+      hello: "Hello React!",
+      shops: [
+        { name: "Adornica", picture: "http://placehold.it/150x150" },
+        { name: "Illumity", picture: "http://placehold.it/150x150" },
+        { name: "Corporana", picture: "http://placehold.it/150x150" },
+        { name: "Viasia", picture: "http://placehold.it/150x150" },
+        { name: "Ultrasure", picture: "http://placehold.it/150x150" },
+        { name: "Everest", picture: "http://placehold.it/150x150" },
+        { name: "Sultrax", picture: "http://placehold.it/150x150" },
+        { name: "Sultrax", picture: "http://placehold.it/150x150" }
+      ]
     }
   }
 
@@ -21,9 +36,10 @@ class App extends Component {
       })
       .catch((error) => {
         console.log(error)
-      });
+      })
   }
 
+  /*
   render() {
     var locationParagraph = !this.props.isGeolocationAvailable
       ? <p>Your browser does not support Geolocation</p>
@@ -31,7 +47,7 @@ class App extends Component {
         ? <p>Geolocation is not enabled</p>
         : this.props.coords
           ? <p>{this.props.coords.latitude}, {this.props.coords.longitude}</p>
-          : <p>Getting the location data&hellip;</p>;
+          : <p>Getting the location data&hellip;</p>
 
     return (
       <div className="App">
@@ -44,14 +60,42 @@ class App extends Component {
         </p>
         <p>{this.state.hello}</p>
         {locationParagraph}
+        <ShopCardList shops={this.state.shops}/>
       </div>
-    );
+    )
+  }*/
+
+  handleCloseDimmer = () => this.setState({ dimmerActive: false })
+
+  render() {
+    let { dimmerActive } = this.state
+
+    let locationInfo = !this.props.isGeolocationAvailable
+      ? <p>Your browser does not support Geolocation</p>
+      : !this.props.isGeolocationEnabled
+        ? <p>Geolocation is not enabled</p>
+        : this.props.coords
+          ? dimmerActive ? this.handleCloseDimmer() : null
+          : <Loader>Getting the location data</Loader>
+
+    return (
+      <div>
+        <Dimmer active={dimmerActive} page>
+          {locationInfo}
+        </Dimmer>
+
+        <HomePageMenu />
+        <HomePageHeading />
+      </div>
+    )
   }
 }
 
 export default geolocated({
   positionOptions: {
     enableHighAccuracy: true,
+    maximumAge: 0
   },
-  userDecisionTimeout: 5000,
-})(App);
+  userDecisionTimeout: null,
+  geolocationProvider: navigator.geolocation
+})(App)
