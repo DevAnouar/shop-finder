@@ -3,7 +3,7 @@ import { Card, Image, Button } from "semantic-ui-react";
 
 const ShopCard = ({ name, picture }) => (
   <Card raised color="orange">
-    <Card.Content>
+    <Card.Content textAlign="left">
       <Card.Header>{name}</Card.Header>
     </Card.Content>
     <Card.Content textAlign="center">
