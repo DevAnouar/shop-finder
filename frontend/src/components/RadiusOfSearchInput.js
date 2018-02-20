@@ -1,13 +1,16 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const RadiusOfSearchInput = () => (
+const RadiusOfSearchInput = ({size, action, style, fluid}) => (
   <Input
-    size='large'
+    size={size}
+    action={action}
+    actionPosition='right'
     icon='search'
     iconPosition='left'
     placeholder='Radius of search in km...'
-    style={{ paddingTop: '0.5em', paddingBottom: '0.5em', width: '25em' }}
+    style={style}
+    fluid={fluid}
   />
 )
 

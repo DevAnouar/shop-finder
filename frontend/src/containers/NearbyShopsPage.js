@@ -27,7 +27,7 @@ class NearbyShopsPage extends Component {
       <div>
         <Menu fixed='top' size='huge' borderless>
           <Menu.Item>
-            <RadiusOfSearchInput />
+            <RadiusOfSearchInput size='large' style={{ paddingTop: '0.5em', paddingBottom: '0.5em', width: '20em' }} />
           </Menu.Item>
         </Menu>
 
