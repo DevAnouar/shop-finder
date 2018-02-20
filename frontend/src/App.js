@@ -7,6 +7,7 @@ import ShopCardList from "./components/ShopCardList";
 import HomePageHeading from "./components/HomePageHeading"
 import HomePageMenu from "./components/HomePageMenu";
 import {Dimmer, Loader, Segment} from "semantic-ui-react";
+import GeolocationNotSupportedHeader from "./components/GeolocationNotSupportedHeader";
 
 class App extends Component {
 
@@ -71,7 +72,7 @@ class App extends Component {
     let { dimmerActive } = this.state
 
     let locationInfo = !this.props.isGeolocationAvailable
-      ? <p>Your browser does not support Geolocation</p>
+      ? <GeolocationNotSupportedHeader />
       : !this.props.isGeolocationEnabled
         ? <p>Geolocation is not enabled</p>
         : this.props.coords
