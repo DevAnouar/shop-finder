@@ -3,7 +3,7 @@ import {Menu, Container, Segment} from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
 import axios from 'axios';
 import NearbyShopsSearchForm from "../components/NearbyShopsSearchForm";
-import {radiusOfSearchRegex} from "../utils";
+import {isValidRadius} from "../utils";
 
 class NearbyShopsPage extends Component {
   constructor(props) {
@@ -20,16 +20,7 @@ class NearbyShopsPage extends Component {
   }
 
   handleChange = (e, { value } ) => {
-    if ( radiusOfSearchRegex.test(value) ) {
-      this.setState({
-        radius: value,
-        radiusValid: true
-      })
-    } else {
-      this.setState({
-        radiusValid: false
-      })
-    }
+    isValidRadius(value) ? this.setState({ radius: value, radiusValid: true }) : this.setState({ radiusValid: false })
   }
   
   handleSubmit = (e, data) => {

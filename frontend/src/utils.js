@@ -1,1 +1,3 @@
-export const radiusOfSearchRegex = /^(\d*\.)?\d+$/
+const radiusOfSearchRegex = /^(\d*\.)?\d+$/
+
+export const isValidRadius = (radius) => radiusOfSearchRegex.test(radius)
