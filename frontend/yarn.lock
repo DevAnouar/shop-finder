@@ -5199,6 +5199,10 @@ react-geolocated@^2.3.0:
   dependencies:
     prop-types "^15.5.8"
 
+react-perf-devtool@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-perf-devtool/-/react-perf-devtool-3.0.4.tgz#3f6d245b3612d459806a40ba70a9b20b05d65c04"
+
 react-redux@^5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"

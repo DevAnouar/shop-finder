@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {Menu, Container, Segment, Form, Button} from 'semantic-ui-react'
+import {Menu, Container, Segment} from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
-import RadiusOfSearchInput from "../components/RadiusOfSearchInput";
 import axios from 'axios';
 import NearbyShopsSearchForm from "../components/NearbyShopsSearchForm";
+import {radiusOfSearchRegex} from "../utils";
 
 class NearbyShopsPage extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class NearbyShopsPage extends Component {
 
     this.state = {
       radius: '',
+      radiusValid: false,
       shops: []
     }
 
@@ -19,26 +20,39 @@ class NearbyShopsPage extends Component {
   }
 
   handleChange = (e, { value } ) => {
-    this.setState({ radius: value })
+    if ( radiusOfSearchRegex.test(value) ) {
+      this.setState({
+        radius: value,
+        radiusValid: true
+      })
+    } else {
+      this.setState({
+        radiusValid: false
+      })
+    }
   }
   
   handleSubmit = (e, data) => {
-    const { radius } = this.state
-    const url = `/api/shops/@33.846978,-6.775816,${radius}`
-
-    axios.get(url)
-      .then((response) => {
-        this.setState({ shops: response.data })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-
     e.preventDefault()
+
+    const { radiusValid } = this.state
+
+    if ( radiusValid ) {
+      const {radius} = this.state
+      const url = `/api/shops/@33.846978,-6.775816,${radius}`
+
+      axios.get(url)
+        .then((response) => {
+          this.setState({shops: response.data})
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   }
   
   render() {
-    const { radius } = this.state
+    const { radius, radiusValid } = this.state
 
     return (
       <Segment basic>
@@ -48,7 +62,6 @@ class NearbyShopsPage extends Component {
                                    size='large'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }}
                                    onChange={this.handleChange}
-                                   value={radius}
                                    style={{ width: '17.5em' }} />
           </Menu.Item>
         </Menu>
