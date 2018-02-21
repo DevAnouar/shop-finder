@@ -9,6 +9,8 @@ class HomePageMenu extends Component {
       activeItem: '',
       hoveredItem: ''
     }
+
+    this.handleItemClick = this.handleItemClick.bind(this)
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
