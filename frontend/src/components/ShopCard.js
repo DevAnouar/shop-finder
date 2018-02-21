@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Image, Button } from "semantic-ui-react";
 
 const ShopCard = ({ name, picture }) => (
-  <Card raised color="orange">
+  <Card raised color="teal">
     <Card.Content textAlign="left">
       <Card.Header>{name}</Card.Header>
     </Card.Content>

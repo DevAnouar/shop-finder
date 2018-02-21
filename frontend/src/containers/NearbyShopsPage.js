@@ -1,40 +1,76 @@
 import React, { Component } from 'react'
-import { Menu, Container } from 'semantic-ui-react'
+import {Menu, Container, Segment, Form, Button} from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
 import RadiusOfSearchInput from "../components/RadiusOfSearchInput";
+import axios from 'axios';
 
 class NearbyShopsPage extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      hello: "Hello React!",
-      shops: [
-        { name: "Adornica", picture: "http://placehold.it/150x150" },
-        { name: "Illumity", picture: "http://placehold.it/150x150" },
-        { name: "Corporana", picture: "http://placehold.it/150x150" },
-        { name: "Viasia", picture: "http://placehold.it/150x150" },
-        { name: "Ultrasure", picture: "http://placehold.it/150x150" },
-        { name: "Everest", picture: "http://placehold.it/150x150" },
-        { name: "Sultrax", picture: "http://placehold.it/150x150" },
-        { name: "Sultrax", picture: "http://placehold.it/150x150" }
-      ]
+      radius: '',
+      shops: []
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  /*
+  componentDidMount() {
+    axios.get("/api/shops/@33.846978,-6.775816,23")
+      .then((response) => {
+        this.setState({ shops: response.data })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }*/
+
+  handleChange = (e, { value } ) => {
+    const radius = value
+    console.log('In handleChange', radius)
+
+    this.setState({ radius: radius })
+  }
+  
+  handleSubmit = (e, data) => {
+    const { radius } = this.state
+    const url = `/api/shops/@33.846978,-6.775816,${radius}`
+
+    axios.get(url)
+      .then((response) => {
+        this.setState({ shops: response.data })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    e.preventDefault()
   }
   
   render() {
+    const { radius } = this.state
+
     return (
-      <div>
+      <Segment basic>
         <Menu fixed='top' size='huge' borderless>
           <Menu.Item>
-            <RadiusOfSearchInput size='large' style={{ paddingTop: '0.5em', paddingBottom: '0.5em', width: '20em' }} />
+            <Form>
+              <RadiusOfSearchInput size='large'
+                                   action={{ color: 'teal', content: 'Search', size: 'small', onClick: this.handleSubmit }}
+                                   onChange={this.handleChange}
+                                   value={radius}
+                                   style={{ width: '17.5em' }} />
+            </Form>
           </Menu.Item>
         </Menu>
 
-        <Container style={{ marginTop: '7em' }}>
+        <Container style={{ marginTop: '5.5em' }}>
           <ShopCardList shops={this.state.shops}/>
         </Container>
-      </div>
+      </Segment>
     )
   }
 }

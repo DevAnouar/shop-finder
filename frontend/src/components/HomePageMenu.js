@@ -6,8 +6,7 @@ class HomePageMenu extends Component {
     super(props)
 
     this.state = {
-      activeItem: '',
-      hoveredItem: ''
+      activeItem: ''
     }
 
     this.handleItemClick = this.handleItemClick.bind(this)
