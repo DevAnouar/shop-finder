@@ -13,8 +13,6 @@ class HomePageMenu extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  handleItemHovered = (e, { name }) => this.setState({ hoveredItem: name })
-
   render() {
     let { activeItem } = this.state
 
