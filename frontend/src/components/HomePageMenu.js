@@ -8,9 +8,9 @@ class HomePageMenu extends Component {
 
   render() {
     return (
-      <Menu fixed='top' size='massive' borderless>
+      <Menu fixed='top' size='massive' color='teal' secondary pointing borderless>
         <Menu.Menu position='right'>
-          <Menu.Item link name='Log In' />
+          <Menu.Item link active name='Log In' />
           <Menu.Item link name='Sign Up' />
         </Menu.Menu>
       </Menu>

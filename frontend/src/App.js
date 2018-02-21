@@ -82,14 +82,18 @@ class App extends Component {
           : <Loader>Getting the location data</Loader>
 
     return (
-      <Dimmer.Dimmable as='div' blurring dimmed={dimmerActive}>
-        <Dimmer active={dimmerActive} page>
-          {locationInfo}
-        </Dimmer>
+      <div>
+        <Segment basic>
+          <Dimmer.Dimmable blurring dimmed={dimmerActive}>
+            <Dimmer active={dimmerActive} page>
+              {locationInfo}
+            </Dimmer>
 
-        <HomePageMenu />
-        <HomePageHeading />
-      </Dimmer.Dimmable>
+            <HomePageMenu />
+            <HomePageHeading />
+          </Dimmer.Dimmable>
+        </Segment>
+      </div>
     )
   }
 }
