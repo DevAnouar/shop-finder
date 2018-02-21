@@ -71,12 +71,13 @@ class App extends Component {
 
   render() {
     let { dimmerActive } = this.state
+    let { isGeolocationAvailable, isGeolocationEnabled, coords } = this.props;
 
-    let locationInfo = !this.props.isGeolocationAvailable
+    let locationInfo = !isGeolocationAvailable
       ? <GeolocationNotSupportedHeader />
-      : !this.props.isGeolocationEnabled
+      : !isGeolocationEnabled
         ? <GeolocationNotEnabledHeader />
-        : this.props.coords
+        : coords
           ? dimmerActive ? this.handleCloseDimmer() : null
           : <Loader>Getting the location data</Loader>
 
