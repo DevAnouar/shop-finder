@@ -3,6 +3,7 @@ import {Menu, Container, Segment, Form, Button} from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
 import RadiusOfSearchInput from "../components/RadiusOfSearchInput";
 import axios from 'axios';
+import NearbyShopsSearchForm from "../components/NearbyShopsSearchForm";
 
 class NearbyShopsPage extends Component {
   constructor(props) {
@@ -43,13 +44,12 @@ class NearbyShopsPage extends Component {
       <Segment basic>
         <Menu fixed='top' size='huge' borderless>
           <Menu.Item>
-            <Form onSubmit={this.handleSubmit}>
-              <RadiusOfSearchInput size='large'
+            <NearbyShopsSearchForm onSubmit={this.handleSubmit}
+                                   size='large'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }}
                                    onChange={this.handleChange}
                                    value={radius}
                                    style={{ width: '17.5em' }} />
-            </Form>
           </Menu.Item>
         </Menu>
 
