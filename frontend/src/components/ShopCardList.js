@@ -4,7 +4,7 @@ import { Card } from "semantic-ui-react";
 
 const ShopCardList = ({ shops }) => {
   const shopItems = shops.map(shop => {
-    return <ShopCard name={shop.name} picture={shop.picture} />;
+    return <ShopCard key={shop.id} name={shop.name} picture={shop.picture} />;
   });
 
   return (

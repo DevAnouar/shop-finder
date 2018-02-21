@@ -21,7 +21,7 @@ public class MongoFacade {
         List<ShopEntity> shopEntities = shopsRepository.findByLocationWithin(new Circle(centerLongitude, centerLatitude, radiusInKm/111.12));
         List<Shop> shops = new ArrayList<>();
         for (ShopEntity shopEntity : shopEntities) {
-            shops.add(new Shop(shopEntity.getPicture(), shopEntity.getName(), shopEntity.getEmail(), shopEntity.getCity(),
+            shops.add(new Shop(shopEntity.getId().toHexString(), shopEntity.getPicture(), shopEntity.getName(), shopEntity.getEmail(), shopEntity.getCity(),
                     new Location(shopEntity.getLocation().getY(), shopEntity.getLocation().getX())));
         }
 
