@@ -6,11 +6,14 @@ class HomePageMenu extends Component {
     super(props)
 
     this.state = {
-      activeItem: ''
+      activeItem: '',
+      hoveredItem: ''
     }
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  handleItemHovered = (e, { name }) => this.setState({ hoveredItem: name })
 
   render() {
     let { activeItem } = this.state
@@ -18,8 +21,8 @@ class HomePageMenu extends Component {
     return (
       <Menu fixed='top' size='massive' color='teal' secondary pointing borderless>
         <Menu.Menu position='right'>
-          <Menu.Item name='Log In' active={activeItem === 'Log In'} onClick={this.handleItemClick} />
-          <Menu.Item name='Sign Up' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} />
+          <Menu.Item name='Log In' className='ui menu-item Change' active={activeItem === 'Log In'} onClick={this.handleItemClick} />
+          <Menu.Item name='Sign Up' className='ui menu-item Change' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} />
         </Menu.Menu>
       </Menu>
     )
