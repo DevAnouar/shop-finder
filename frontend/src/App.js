@@ -8,6 +8,7 @@ import HomePageHeading from "./components/HomePageHeading"
 import HomePageMenu from "./components/HomePageMenu";
 import {Dimmer, Loader, Segment} from "semantic-ui-react";
 import GeolocationNotSupportedHeader from "./components/GeolocationNotSupportedHeader";
+import GeolocationNotEnabledHeader from "./components/GeoLocationNotEnabledHeader";
 
 class App extends Component {
 
@@ -74,20 +75,20 @@ class App extends Component {
     let locationInfo = !this.props.isGeolocationAvailable
       ? <GeolocationNotSupportedHeader />
       : !this.props.isGeolocationEnabled
-        ? <p>Geolocation is not enabled</p>
+        ? <GeolocationNotEnabledHeader />
         : this.props.coords
           ? dimmerActive ? this.handleCloseDimmer() : null
           : <Loader>Getting the location data</Loader>
 
     return (
-      <div>
+      <Dimmer.Dimmable as='div' blurring dimmed={dimmerActive}>
         <Dimmer active={dimmerActive} page>
           {locationInfo}
         </Dimmer>
 
         <HomePageMenu />
         <HomePageHeading />
-      </div>
+      </Dimmer.Dimmable>
     )
   }
 }

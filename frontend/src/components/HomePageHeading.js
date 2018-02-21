@@ -10,7 +10,7 @@ const HomePageHeading = () => (
         Search for shops located nearby your current location.
       </Header.Subheader>
     </Header>
-    <RadiusOfSearchInput size='huge' action={{ color:'teal', content:'Search' }} fluid />
+    <RadiusOfSearchInput size='huge' action={{ color:'teal', content:'Search', size:'big' }} fluid />
   </Container>
 )
 
