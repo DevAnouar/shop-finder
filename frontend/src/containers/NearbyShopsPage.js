@@ -17,22 +17,8 @@ class NearbyShopsPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  /*
-  componentDidMount() {
-    axios.get("/api/shops/@33.846978,-6.775816,23")
-      .then((response) => {
-        this.setState({ shops: response.data })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }*/
-
   handleChange = (e, { value } ) => {
-    const radius = value
-    console.log('In handleChange', radius)
-
-    this.setState({ radius: radius })
+    this.setState({ radius: value })
   }
   
   handleSubmit = (e, data) => {
@@ -57,9 +43,9 @@ class NearbyShopsPage extends Component {
       <Segment basic>
         <Menu fixed='top' size='huge' borderless>
           <Menu.Item>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <RadiusOfSearchInput size='large'
-                                   action={{ color: 'teal', content: 'Search', size: 'small', onClick: this.handleSubmit }}
+                                   action={{ color: 'teal', content: 'Search', size: 'small' }}
                                    onChange={this.handleChange}
                                    value={radius}
                                    style={{ width: '17.5em' }} />
