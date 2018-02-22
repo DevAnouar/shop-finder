@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Menu, Container, Segment} from 'semantic-ui-react'
+import {Menu, Container, Segment, Statistic, Icon, Transition} from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
 import axios from 'axios';
 import NearbyShopsSearchForm from "../components/NearbyShopsSearchForm";
@@ -10,9 +10,10 @@ class NearbyShopsPage extends Component {
     super(props)
 
     this.state = {
-      radius: '',
-      radiusValid: false,
-      shops: []
+      radius: 0.,
+      shops: [],
+      inputValid: false,
+      firstSearchSubmitted: false,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -20,30 +21,38 @@ class NearbyShopsPage extends Component {
   }
 
   handleChange = (e, { value } ) => {
-    isValidRadius(value) ? this.setState({ radius: value, radiusValid: true }) : this.setState({ radiusValid: false })
+    this.setState({ radius: parseFloat(value), inputValid: isValidRadius(value) })
   }
   
   handleSubmit = (e, data) => {
-    e.preventDefault()
+    console.log(data)
+    const { radius, inputValid } = this.state
 
-    const { radiusValid } = this.state
-
-    if ( radiusValid ) {
-      const {radius} = this.state
+    if ( inputValid & radius > 0 ) {
       const url = `/api/shops/@33.846978,-6.775816,${radius}`
 
       axios.get(url)
         .then((response) => {
-          this.setState({shops: response.data})
+          this.setState({ shops: response.data, firstSearchSubmitted: true })
         })
         .catch((error) => {
           console.log(error)
         })
     }
+
+    e.preventDefault()
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if ( !isValidRadius(nextState.radius.toString()) || this.state.shops === nextState.shops ) {
+      return false
+    }
+
+    return true
   }
   
   render() {
-    const { radius, radiusValid } = this.state
+    const { shops, radius, firstSearchSubmitted } = this.state
 
     return (
       <Segment basic>
@@ -57,8 +66,18 @@ class NearbyShopsPage extends Component {
           </Menu.Item>
         </Menu>
 
-        <Container style={{ marginTop: '5.5em' }}>
-          <ShopCardList shops={this.state.shops}/>
+        <Container textAlign='center' style={{ marginTop: '5.5em' }}>
+          { firstSearchSubmitted &&
+              <Statistic color='grey'>
+                <Statistic.Value>
+                  <Icon name='shop' />
+                  {shops.length}
+                </Statistic.Value>
+                <Statistic.Label>Shops found within {radius} Km</Statistic.Label>
+              </Statistic>
+          }
+
+          <ShopCardList shops={shops} />
         </Container>
       </Segment>
     )

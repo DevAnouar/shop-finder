@@ -7,6 +7,7 @@ const ShopCardList = ({ shops }) => {
     return <ShopCard key={shop.id} name={shop.name} picture={shop.picture} />;
   });
 
+  //TODO Virtualize shopItems list for better performance
   return (
       <Card.Group centered itemsPerRow="4">
         {shopItems}

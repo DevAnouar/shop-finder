@@ -5,7 +5,6 @@ const RadiusOfSearchInput = ({size, action, onChange, style, fluid}) => (
   <Input
     size={size}
     action={action}
-    actionPosition='right'
     onChange={onChange}
     icon='search'
     iconPosition='left'
