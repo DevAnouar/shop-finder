@@ -4,6 +4,7 @@ import ShopCardList from "../components/ShopCardList";
 import axios from 'axios';
 import NearbyShopsSearchForm from "../components/NearbyShopsSearchForm";
 import {isValidRadius} from "../utils";
+import ShopsCountStatistic from "../components/ShopsCountStatistic";
 
 class NearbyShopsPage extends Component {
   constructor(props) {
@@ -68,17 +69,8 @@ class NearbyShopsPage extends Component {
 
         <Container textAlign='center' style={{ marginTop: '5.5em' }}>
           { firstSearchSubmitted &&
-            <Transition animation='scale' duration={1500} transitionOnMount>
-              <Statistic color='grey'>
-                <Statistic.Value>
-                  <Icon name='shop' />
-                  {shops.length}
-                </Statistic.Value>
-                <Statistic.Label>Shops found within {radius} Km</Statistic.Label>
-              </Statistic>
-            </Transition>
+            <ShopsCountStatistic shopsCount={shops.length} radiusOfSearch={radius} />
           }
-
           <ShopCardList shops={shops} />
         </Container>
       </Segment>
