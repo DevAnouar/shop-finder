@@ -13,10 +13,8 @@ class App extends Component {
     super(props)
 
     this.state = {
-      dimmerActive: true,
+      dimmerActive: true
     }
-
-    this.handleCloseDimmer = this.handleCloseDimmer.bind(this)
   }
 
   handleCloseDimmer = () => this.setState({ dimmerActive: false })
@@ -30,7 +28,7 @@ class App extends Component {
       : !isGeolocationEnabled
         ? <GeolocationNotEnabledHeader />
         : coords
-          ? dimmerActive ? this.handleCloseDimmer() : null
+          ? dimmerActive && this.handleCloseDimmer()
           : <Loader>Getting the location data</Loader>
 
     return (

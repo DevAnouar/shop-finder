@@ -11,6 +11,6 @@ if (module.hot) {
   module.hot.accept()
 }
 
-ReactDOM.render(<NearbyShopsPage />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 registerObserver();
 registerServiceWorker();

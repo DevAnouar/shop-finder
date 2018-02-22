@@ -18,7 +18,7 @@ class HomePageMenu extends Component {
     let { activeItem } = this.state
 
     return (
-      <Menu fixed='top' size='massive' color='teal' secondary pointing borderless>
+      <Menu fixed='top' size='massive' color='teal' secondary pointing borderless style={{ height: '3.1115em' }}>
         <Menu.Menu position='right'>
           <Menu.Item name='Log In' className='ui menu-item Change' active={activeItem === 'Log In'} onClick={this.handleItemClick} />
           <Menu.Item name='Sign Up' className='ui menu-item Change' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} />

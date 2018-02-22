@@ -57,17 +57,17 @@ class NearbyShopsPage extends Component {
 
     return (
       <Segment basic>
-        <Menu fixed='top' size='huge' borderless>
+        <Menu fixed='top' size='mini' borderless>
           <Menu.Item>
             <NearbyShopsSearchForm onSubmit={this.handleSubmit}
-                                   size='large'
+                                   size='small'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }}
                                    onChange={this.handleChange}
-                                   style={{ width: '17.5em' }} />
+                                   style={{ width: '103%' }} />
           </Menu.Item>
         </Menu>
 
-        <Container textAlign='center' style={{ marginTop: '5.5em' }}>
+        <Container textAlign='center' style={{ marginTop: '3.75em' }}>
           { firstSearchSubmitted &&
             <ShopsCountStatistic shopsCount={shops.length} radiusOfSearch={radius} />
           }
