@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Icon, Statistic, Transition} from "semantic-ui-react";
 
+// TODO Implement animation on radius change
 class ShopsCountStatistic extends Component {
   constructor(props) {
     super(props)
