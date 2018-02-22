@@ -68,6 +68,7 @@ class NearbyShopsPage extends Component {
 
         <Container textAlign='center' style={{ marginTop: '5.5em' }}>
           { firstSearchSubmitted &&
+            <Transition animation='scale' duration={1500} transitionOnMount>
               <Statistic color='grey'>
                 <Statistic.Value>
                   <Icon name='shop' />
@@ -75,6 +76,7 @@ class NearbyShopsPage extends Component {
                 </Statistic.Value>
                 <Statistic.Label>Shops found within {radius} Km</Statistic.Label>
               </Statistic>
+            </Transition>
           }
 
           <ShopCardList shops={shops} />
