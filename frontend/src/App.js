@@ -15,10 +15,13 @@ class App extends Component {
     this.state = {
       dimmerActive: true
     }
+
+    this.handleCloseDimmer = this.handleCloseDimmer.bind(this)
   }
 
   handleCloseDimmer = () => this.setState({ dimmerActive: false })
 
+  // TODO Fix constructor side-effects anti-pattern warning
   render() {
     let { dimmerActive } = this.state
     let { isGeolocationAvailable, isGeolocationEnabled, coords } = this.props;
