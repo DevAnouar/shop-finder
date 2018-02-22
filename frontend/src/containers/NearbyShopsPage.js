@@ -26,7 +26,8 @@ class NearbyShopsPage extends Component {
   }
   
   handleSubmit = (e, data) => {
-    console.log(data)
+    e.preventDefault()
+
     const { radius, inputValid } = this.state
 
     if ( inputValid & radius > 0 ) {
@@ -40,8 +41,6 @@ class NearbyShopsPage extends Component {
           console.log(error)
         })
     }
-
-    e.preventDefault()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
