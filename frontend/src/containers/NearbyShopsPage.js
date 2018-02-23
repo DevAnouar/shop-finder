@@ -35,7 +35,7 @@ class ConnectedNearbyShopsPage extends Component {
     const { latitude, longitude } = this.props.location
 
     if ( inputValid & radius > 0 ) {
-      const url = `/api/shops/@${latitude},${longitude},${radius}` // 33.846978,-6.775816
+      const url = `/api/shops/@${latitude},${longitude},${radius}`
 
       axios.get(url)
         .then((response) => {

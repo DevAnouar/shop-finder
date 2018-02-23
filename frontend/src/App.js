@@ -6,8 +6,12 @@ import {Dimmer, Loader, Segment} from "semantic-ui-react";
 import GeolocationNotSupportedHeader from "./components/GeolocationNotSupportedHeader";
 import GeolocationNotEnabledHeader from "./components/GeoLocationNotEnabledHeader";
 import './App.css';
+import {setLocation} from "./actions";
+import {connect} from "react-redux";
 
-class App extends Component {
+const mapDispatchToProps = dispatch => ({ setLocation: location => dispatch(setLocation(location)) })
+
+class ConnectedApp extends Component {
 
   constructor(props) {
     super(props)
@@ -24,14 +28,14 @@ class App extends Component {
   // TODO Fix constructor side-effects anti-pattern warning
   render() {
     let { dimmerActive } = this.state
-    let { isGeolocationAvailable, isGeolocationEnabled, coords } = this.props;
+    let { isGeolocationAvailable, isGeolocationEnabled, coords, setLocation } = this.props;
 
     let locationInfo = !isGeolocationAvailable
       ? <GeolocationNotSupportedHeader />
       : !isGeolocationEnabled
         ? <GeolocationNotEnabledHeader />
         : coords
-          ? dimmerActive && this.handleCloseDimmer()
+          ? dimmerActive && setLocation({ latitude: coords.latitude, longitude: coords.longitude }) && this.handleCloseDimmer()
           : <Loader>Getting the location data</Loader>
 
     return (
@@ -50,6 +54,8 @@ class App extends Component {
     )
   }
 }
+
+const App = connect(null, mapDispatchToProps)(ConnectedApp)
 
 export default geolocated({
   positionOptions: {
