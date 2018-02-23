@@ -8,6 +8,7 @@ import GeolocationNotEnabledHeader from "./components/GeoLocationNotEnabledHeade
 import './App.css';
 import {setLocation} from "./actions";
 import {connect} from "react-redux";
+import {precisionRound} from "./utils/validation";
 
 const mapDispatchToProps = dispatch => ({ setLocation: location => dispatch(setLocation(location)) })
 
@@ -27,15 +28,17 @@ class ConnectedApp extends Component {
 
   // TODO Fix constructor side-effects anti-pattern warning
   render() {
-    let { dimmerActive } = this.state
-    let { isGeolocationAvailable, isGeolocationEnabled, coords, setLocation } = this.props;
+    const { dimmerActive } = this.state
+    const { isGeolocationAvailable, isGeolocationEnabled, coords, setLocation } = this.props;
 
-    let locationInfo = !isGeolocationAvailable
+    const locationInfo = !isGeolocationAvailable
       ? <GeolocationNotSupportedHeader />
       : !isGeolocationEnabled
         ? <GeolocationNotEnabledHeader />
         : coords
-          ? dimmerActive && setLocation({ latitude: coords.latitude, longitude: coords.longitude }) && this.handleCloseDimmer()
+          ? dimmerActive &&
+            setLocation({ latitude: precisionRound(coords.latitude, 7), longitude: precisionRound(coords.longitude, 7) }) &&
+            this.handleCloseDimmer()
           : <Loader>Getting the location data</Loader>
 
     return (
