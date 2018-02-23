@@ -3,7 +3,7 @@ import {Menu, Container, Segment, Statistic, Icon, Transition} from 'semantic-ui
 import ShopCardList from "../components/ShopCardList";
 import axios from 'axios';
 import NearbyShopsSearchForm from "../components/NearbyShopsSearchForm";
-import {isValidRadius} from "../utils";
+import {isValidRadius} from "../utils/validation";
 import ShopsCountStatistic from "../components/ShopsCountStatistic";
 
 class NearbyShopsPage extends Component {
