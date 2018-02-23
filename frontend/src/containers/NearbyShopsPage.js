@@ -5,8 +5,11 @@ import axios from 'axios';
 import NearbyShopsSearchForm from "../components/NearbyShopsSearchForm";
 import {isValidRadius} from "../utils/validation";
 import ShopsCountStatistic from "../components/ShopsCountStatistic";
+import {connect} from "react-redux";
 
-class NearbyShopsPage extends Component {
+const mapStateToProps = state => ({ location: state.location })
+
+class ConnectedNearbyShopsPage extends Component {
   constructor(props) {
     super(props)
 
@@ -29,9 +32,10 @@ class NearbyShopsPage extends Component {
     e.preventDefault()
 
     const { radius, inputValid } = this.state
+    const { latitude, longitude } = this.props.location
 
     if ( inputValid & radius > 0 ) {
-      const url = `/api/shops/@33.846978,-6.775816,${radius}`
+      const url = `/api/shops/@${latitude},${longitude},${radius}` // 33.846978,-6.775816
 
       axios.get(url)
         .then((response) => {
@@ -76,5 +80,7 @@ class NearbyShopsPage extends Component {
     )
   }
 }
+
+const NearbyShopsPage = connect(mapStateToProps)(ConnectedNearbyShopsPage)
 
 export default NearbyShopsPage
