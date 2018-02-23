@@ -6,7 +6,7 @@ const RadiusOfSearchInput = ({size, action, onChange, style, fluid}) => (
     size={size}
     action={action}
     onChange={onChange}
-    icon='search'
+    icon={{ name: 'search', color: 'teal' }}
     iconPosition='left'
     placeholder='Radius of search in km...'
     style={style}
