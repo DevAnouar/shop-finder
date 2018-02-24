@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'semantic-ui-css/semantic.min.css';
-import NearbyShopsPage from "./containers/NearbyShopsPage";
 import {registerObserver} from "react-perf-devtool";
 import {Provider} from "react-redux";
 import store from "./store";
+import {BrowserRouter} from "react-router-dom";
 
 if (module.hot) {
   module.hot.accept()
@@ -15,7 +15,9 @@ if (module.hot) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

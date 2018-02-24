@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { geolocated } from 'react-geolocated';
-import HomePageHeading from "./components/HomePageHeading"
-import HomePageMenu from "./components/HomePageMenu";
 import {Dimmer, Loader, Segment} from "semantic-ui-react";
 import GeolocationNotSupportedHeader from "./components/GeolocationNotSupportedHeader";
 import GeolocationNotEnabledHeader from "./components/GeoLocationNotEnabledHeader";
@@ -9,6 +7,8 @@ import './App.css';
 import {setLocation} from "./actions";
 import {connect} from "react-redux";
 import {precisionRound} from "./utils/validation";
+import NavMenu from "./components/NavMenu";
+import Main from "./containers/Main";
 
 const mapDispatchToProps = dispatch => ({ setLocation: location => dispatch(setLocation(location)) })
 
@@ -49,8 +49,8 @@ class ConnectedApp extends Component {
               {locationInfo}
             </Dimmer>
 
-            <HomePageMenu />
-            <HomePageHeading />
+            <NavMenu />
+            <Main />
           </Dimmer.Dimmable>
         </Segment>
       </div>

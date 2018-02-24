@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import {Menu} from "semantic-ui-react";
+import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 
-class HomePageMenu extends Component {
+class NavMenu extends Component {
   constructor(props) {
     super(props)
 
@@ -12,13 +13,21 @@ class HomePageMenu extends Component {
     this.handleItemClick = this.handleItemClick.bind(this)
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick(e, { name }) {
+    this.setState({activeItem: name})
+  }
 
   render() {
-    let { activeItem } = this.state
+    const { activeItem } = this.state
 
     return (
-      <Menu fixed='top' size='massive' color='teal' secondary pointing borderless style={{ height: '3.1115em' }}>
+      <Menu fixed='top' color='teal' pointing borderless>
+        <Menu.Item>
+          <NearbyShopsSearchForm size='small'
+                                 action={{ color: 'teal', content: 'Search', size: 'small' }}
+                                 style={{ width: '103%' }} />
+        </Menu.Item>
+
         <Menu.Menu position='right'>
           <Menu.Item name='Log In' className='ui menu-item Change' active={activeItem === 'Log In'} onClick={this.handleItemClick} />
           <Menu.Item name='Sign Up' className='ui menu-item Change' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} />
@@ -28,4 +37,4 @@ class HomePageMenu extends Component {
   }
 }
 
-export  default HomePageMenu
+export default NavMenu
