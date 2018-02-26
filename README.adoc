@@ -76,6 +76,8 @@ You can then launch it with:
 java -jar build/libs/shop-finder-0.0.1-SNAPSHOT.jar
 ```
 
+Then, you can open http://localhost:8080[http://localhost:8080] to view the application in the browser.
+
 NB: The frontend can be build alone with the `bundle` task so you can use `frontend:bundle`.
 The backend `build` task depends on the frontend `bundle` task.
 
