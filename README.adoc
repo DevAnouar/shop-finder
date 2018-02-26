@@ -1,4 +1,4 @@
-# Shop Finder App
+# Shop Finder App (In Development)
 
 This app lists shops nearby the current location of the user.
 
@@ -7,6 +7,21 @@ This app lists shops nearby the current location of the user.
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 The Java code is available in the backend sub-project. The frontend sub-project contains the javascript code.
+
+### Application Data
+
+First of all, you need to setup the MongoDB database.
+
+A MongoDB dump with ~300 shops is provided. To import the data, you need to extract the zip file then execute the command below :
+
+```
+mongorestore --db shops shops/
+```
+
+→ → A shop database will be created with a shops collection.
+
+→ → Dump File : https://github.com/hoddenfounders/web-coding-challenge/blob/master/dump-shops.zip[here]
+
 
 ### Running the backend (recommended)
 
@@ -58,7 +73,7 @@ The jar will be available in `./build/libs/shop-finder-0.0.1-SNAPSHOT.jar`
 You can then launch it with:
 
 ```
-java -jar -Dspring.profiles.active=production build/libs/shop-finder-0.0.1-SNAPSHOT.jar
+java -jar build/libs/shop-finder-0.0.1-SNAPSHOT.jar
 ```
 
 NB: The frontend can be build alone with the `bundle` task so you can use `frontend:bundle`.
@@ -66,10 +81,19 @@ The backend `build` task depends on the frontend `bundle` task.
 
 ## Built With
 
-* https://projects.spring.io/spring-boot/[Spring Boot] - The backend framework used
-* https://gradle.org/[Gradle] - Dependency Management and Build tool
 * https://github.com/facebook/create-react-app[Create React App] - Used to generate React app as the frontend with no build configuration
 * https://github.com/srs/gradle-node-plugin[com.moowork.node] - Gradle plugin for executing node scripts
+* https://gradle.org/[Gradle] - Dependency Management and Build tool
+* https://www.mongodb.com/[MongoDB] - A NoSQL Document Database
+* http://modelmapper.org/[ModelMapper] - Simple, Intelligent, Object Mapping
+* https://no23reason.github.io/react-geolocated/[react-geolocated] - React Higher-Order Component for using Geolocation API
+* https://redux.js.org/[Redux] - A predictable state container for JavaScript apps
+* https://reacttraining.com/react-router/[React Router] - Declarative routing for React
+* https://github.com/reactjs/react-router-redux[React Router Redux] - Ruthlessly simple bindings to keep react-router and redux in sync
+* https://react.semantic-ui.com/[Semantic-UI-React] - A modern front-end development framework that empowers designers and developers by creating a shared vocabulary for *UI*
+* https://projects.spring.io/spring-boot/[Spring Boot] - Allows to create executable Spring applications with a convention over configuration approach
+* https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html[Spring MVC] - Provides Model-View-Controller (*MVC*) architecture and ready to use components to develop flexible and loosely coupled web applications
+* https://yarnpkg.com/[Yarn] - A package manager for node.js modules
 
 ## Authors
 
