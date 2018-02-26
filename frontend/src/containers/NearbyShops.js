@@ -15,7 +15,7 @@ class ConnectedNearbyShops extends Component {
     const { shops } = this.props
 
     return (
-      <Container textAlign='center' style={{ marginTop: '4.5em' }}>
+      <Container textAlign='center' style={{ marginTop: '2.6em' }}>
         <ShopCardList shops={shops} />
       </Container>
     )

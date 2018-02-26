@@ -25,8 +25,8 @@ class ConnectedNavMenu extends Component {
     const { pathname } = this.props.location
 
     return (
-      <Menu fixed='top' color='teal' borderless>
-        <Menu.Item>
+      <Menu fixed='top' color='teal' size='large' borderless>
+        <Menu.Item fitted='vertically' >
           <Transition visible={pathname.includes('/nearby')}>
             <NearbyShopsSearchForm size='small'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }}
