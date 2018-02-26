@@ -20,7 +20,7 @@ mongorestore --db shops shops/
 
 → → A shop database will be created with a shops collection.
 
-→ → Dump File : https://github.com/hoddenfounders/web-coding-challenge/blob/master/dump-shops.zip[here]
+→ → Dump File : https://github.com/hiddenfounders/web-coding-challenge/blob/master/dump-shops.zip[here]
 
 
 ### Running the backend (recommended)
