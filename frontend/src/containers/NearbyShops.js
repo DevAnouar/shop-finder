@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container } from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 const mapStateToProps = state => ({ shops: state.nearbyShops })
 
