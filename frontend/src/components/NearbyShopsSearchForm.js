@@ -5,9 +5,14 @@ import {isValidRadius} from "../utils/validation";
 import axios from "axios/index";
 import {connect} from "react-redux";
 import {setNearbyShops} from "../actions";
+import {bindActionCreators} from "redux";
+import {push} from "react-router-redux";
 
-const mapStateToProps = state => ({ location: state.location })
-const mapDispatchToProps = dispatch => ({ setNearbyShops: nearbyShops => dispatch(setNearbyShops(nearbyShops)) })
+const mapStateToProps = state => ({ userLocation: state.userLocation })
+const mapDispatchToProps = dispatch => bindActionCreators({
+  setNearbyShops: nearbyShops => setNearbyShops(nearbyShops),
+  goToNearbyShops: (latitude, longitude, radius) => push(`/nearby/@${latitude},${longitude},${radius}`)
+}, dispatch)
 
 class ConnectedNearbyShopsSearchForm extends Component {
   constructor(props) {
@@ -29,8 +34,8 @@ class ConnectedNearbyShopsSearchForm extends Component {
     e.preventDefault()
 
     const { radiusInput } = this.state
-    const { latitude, longitude } = this.props.location
-    const { setNearbyShops } = this.props
+    const { latitude, longitude } = this.props.userLocation
+    const { setNearbyShops, goToNearbyShops } = this.props
 
     if ( isValidRadius(radiusInput) ) {
       const radius = parseFloat(radiusInput)
@@ -41,9 +46,12 @@ class ConnectedNearbyShopsSearchForm extends Component {
         axios.get(url)
           .then((response) => {
             setNearbyShops(response.data)
+
           }).catch((error) => {
           console.log(error)
         })
+
+        goToNearbyShops(latitude, longitude, radiusInput)
       }
     }
   }

@@ -7,7 +7,8 @@ import 'semantic-ui-css/semantic.min.css';
 import {registerObserver} from "react-perf-devtool";
 import {Provider} from "react-redux";
 import store from "./store";
-import {BrowserRouter} from "react-router-dom";
+import {ConnectedRouter} from "react-router-redux";
+import history from './history'
 
 if (module.hot) {
   module.hot.accept()
@@ -15,11 +16,12 @@ if (module.hot) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
 registerObserver();
 registerServiceWorker();
+

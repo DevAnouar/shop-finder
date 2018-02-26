@@ -1,8 +1,8 @@
-import {SET_LOCATION, SET_NEARBY_SHOPS} from "../constants/action-types";
+import {SET_USER_LOCATION, SET_NEARBY_SHOPS} from "../constants/action-types";
 
-export const setLocation = location => ({
-  type: SET_LOCATION,
-  payload: location
+export const setUserLocation = userLocation => ({
+  type: SET_USER_LOCATION,
+  payload: userLocation
 })
 
 export const setNearbyShops = nearbyShops => ({
