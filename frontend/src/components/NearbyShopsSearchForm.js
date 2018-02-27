@@ -45,8 +45,7 @@ class ConnectedNearbyShopsSearchForm extends Component {
 
         axios.get(url)
           .then((response) => {
-            setNearbyShops(response.data)
-
+            setNearbyShops({ shops: response.data, radiusOfSearch: radius })
           }).catch((error) => {
           console.log(error)
         })
@@ -57,12 +56,13 @@ class ConnectedNearbyShopsSearchForm extends Component {
   }
 
   render() {
-    const {size, action, style, fluid} = this.props
+    const {size, action, value, style, fluid} = this.props
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <RadiusOfSearchInput size={size}
                              action={action}
+                             value={value}
                              onChange={this.handleChange}
                              style={style}
                              fluid={fluid} />

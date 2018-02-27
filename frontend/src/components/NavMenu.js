@@ -10,7 +10,7 @@ class ConnectedNavMenu extends Component {
     super(props)
 
     this.state = {
-      activeItem: ''
+      activeItem: '',
     }
 
     this.handleItemClick = this.handleItemClick.bind(this)

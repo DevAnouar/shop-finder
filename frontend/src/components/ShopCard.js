@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Image, Button, Transition} from "semantic-ui-react";
 
 const ShopCard = ({ name, picture }) => (
-  <Transition animation='fade' duration={1200} transitionOnMount>
+  <Transition animation='fade' duration={500} transitionOnMount>
     <Card raised color="grey">
       <Card.Content textAlign="left">
         <Card.Header>{name}</Card.Header>

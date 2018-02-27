@@ -5,7 +5,10 @@ const initialState = {
     latitude: 0.,
     longitude: 0.
   },
-  nearbyShops: []
+  nearbyShops: {
+    shops: [],
+    radiusOfSearch: 0.
+  }
 }
 
 const userLocation = (state = initialState.userLocation, action) => {
@@ -20,7 +23,7 @@ const userLocation = (state = initialState.userLocation, action) => {
 const nearbyShops = (state = initialState.nearbyShops, action) => {
   switch (action.type) {
     case SET_NEARBY_SHOPS:
-      return [...action.payload]
+      return { shops: [...action.payload.shops], radiusOfSearch: action.payload.radiusOfSearch }
     default:
       return state
   }
@@ -29,7 +32,3 @@ const nearbyShops = (state = initialState.nearbyShops, action) => {
 const reducers = { userLocation, nearbyShops }
 
 export default reducers
-
-/*const rootReducer = combineReducers({ userLocation, nearbyShops })
-
-export default rootReducer*/

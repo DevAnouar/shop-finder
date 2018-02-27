@@ -3,7 +3,7 @@ import { Container } from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
 import { connect } from "react-redux";
 
-const mapStateToProps = state => ({ shops: state.nearbyShops })
+const mapStateToProps = state => ({ shops: state.nearbyShops.shops, radiusOfSearch: state.nearbyShops.radiusOfSearch })
 
 class ConnectedNearbyShops extends Component {
   constructor(props) {

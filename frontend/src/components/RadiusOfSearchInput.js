@@ -1,10 +1,11 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const RadiusOfSearchInput = ({size, action, onChange, style, fluid}) => (
+const RadiusOfSearchInput = ({size, action, value, onChange, style, fluid}) => (
   <Input
     size={size}
     action={action}
+    value={value}
     onChange={onChange}
     icon={{ name: 'search', color: 'teal' }}
     iconPosition='left'
