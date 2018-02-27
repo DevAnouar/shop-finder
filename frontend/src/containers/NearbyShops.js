@@ -11,7 +11,6 @@ class ConnectedNearbyShops extends Component {
     super(props)
   }
 
-  //TODO Add Statistic
   render() {
     const { shops, radiusOfSearch } = this.props
 
