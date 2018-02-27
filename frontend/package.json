@@ -14,6 +14,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.0",
     "redux": "^3.7.2",
+    "reselect": "^3.0.1",
     "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.78.2"
   },
