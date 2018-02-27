@@ -46,11 +46,10 @@ class ConnectedNearbyShopsSearchForm extends Component {
         axios.get(url)
           .then((response) => {
             setNearbyShops({ shops: response.data, radiusOfSearch: radius })
+            goToNearbyShops(latitude, longitude, radiusInput)
           }).catch((error) => {
           console.log(error)
         })
-
-        goToNearbyShops(latitude, longitude, radiusInput)
       }
     }
   }
