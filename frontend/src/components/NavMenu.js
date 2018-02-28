@@ -4,9 +4,9 @@ import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
 import {getLocation} from "react-router-redux";
 
-const mapStateToProps = state => ({ location: getLocation(state) })
+//const mapStateToProps = state => ({ location: getLocation(state) })
 
-class ConnectedNavMenu extends Component {
+class NavMenu extends Component {
   constructor(props) {
     super(props)
 
@@ -28,7 +28,7 @@ class ConnectedNavMenu extends Component {
     return (
       <Menu fixed='top' color='teal' size='large' borderless>
         <Menu.Item fitted='vertically' >
-          <Transition visible={pathname.includes('/nearby')}>
+          <Transition /*visible={pathname.includes('/nearby')}*/>
             <NearbyShopsSearchForm size='small'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }}
                                    style={{ width: '103%' }} />
@@ -44,6 +44,6 @@ class ConnectedNavMenu extends Component {
   }
 }
 
-const NavMenu = connect(mapStateToProps)(ConnectedNavMenu)
+//const NavMenu = connect(mapStateToProps)(ConnectedNavMenu)
 
 export default NavMenu

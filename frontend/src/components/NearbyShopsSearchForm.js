@@ -11,8 +11,8 @@ import {getUserLocation} from "../selectors";
 
 const mapStateToProps = state => ({ userLocation: getUserLocation(state) })
 const mapDispatchToProps = dispatch => bindActionCreators({
-  setNearbyShops: nearbyShops => setNearbyShops(nearbyShops),
-  goToNearbyShops: (latitude, longitude, radius) => push(`/nearby/@${latitude},${longitude},${radius}`)
+  setNearbyShops: nearbyShops => setNearbyShops(nearbyShops)/*,
+  goToNearbyShops: (latitude, longitude, radius) => push(`/nearby/@${latitude},${longitude},${radius}`)*/
 }, dispatch)
 
 class ConnectedNearbyShopsSearchForm extends Component {
@@ -47,7 +47,7 @@ class ConnectedNearbyShopsSearchForm extends Component {
         axios.get(url)
           .then((response) => {
             setNearbyShops({ shops: response.data, radiusOfSearch: radius })
-            goToNearbyShops(latitude, longitude, radiusInput)
+            //goToNearbyShops(latitude, longitude, radiusInput)
           }).catch((error) => {
           console.log(error)
         })
