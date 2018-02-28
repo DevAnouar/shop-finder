@@ -25,3 +25,4 @@ ReactDOM.render(
 registerObserver();
 registerServiceWorker();
 
+window.store = store

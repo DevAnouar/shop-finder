@@ -3,9 +3,10 @@ import {Route, Switch} from "react-router-dom";
 import Home from "./Home";
 import NearbyShops from "./NearbyShops";
 import {connect} from "react-redux";
+import {getLocation} from "react-router-redux";
 
 const ConnectedSwitch = connect(state => ({
-  location: state.router.location
+  location: getLocation(state)
 }))(Switch)
 
 const MainContainer = () => (
@@ -16,7 +17,7 @@ const MainContainer = () => (
 )
 
 const Main = connect(state => ({
-  location: state.router.location
+  location: getLocation(state)
 }))(MainContainer)
 
 export default Main

@@ -7,8 +7,9 @@ import {connect} from "react-redux";
 import {setNearbyShops} from "../actions";
 import {bindActionCreators} from "redux";
 import {push} from "react-router-redux";
+import {getUserLocation} from "../selectors";
 
-const mapStateToProps = state => ({ userLocation: state.userLocation })
+const mapStateToProps = state => ({ userLocation: getUserLocation(state) })
 const mapDispatchToProps = dispatch => bindActionCreators({
   setNearbyShops: nearbyShops => setNearbyShops(nearbyShops),
   goToNearbyShops: (latitude, longitude, radius) => push(`/nearby/@${latitude},${longitude},${radius}`)

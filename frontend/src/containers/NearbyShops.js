@@ -3,8 +3,9 @@ import { Container } from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
 import { connect } from "react-redux";
 import ShopsCountStatistic from "../components/ShopsCountStatistic";
+import {getNearbyShops} from "../selectors";
 
-const mapStateToProps = state => ({ shops: state.nearbyShops.shops, radiusOfSearch: state.nearbyShops.radiusOfSearch })
+const mapStateToProps = state => ({ nearbyShops: getNearbyShops(state) })
 
 class ConnectedNearbyShops extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ConnectedNearbyShops extends Component {
   }
 
   render() {
-    const { shops, radiusOfSearch } = this.props
+    const { shops, radiusOfSearch } = this.props.nearbyShops
 
     return (
       <Container textAlign='center' style={{ marginTop: '2.6em' }}>

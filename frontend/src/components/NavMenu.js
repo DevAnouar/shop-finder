@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import {Menu, Transition} from "semantic-ui-react";
 import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
+import {getLocation} from "react-router-redux";
 
-const mapStateToProps = state => ({ location: state.router.location })
+const mapStateToProps = state => ({ location: getLocation(state) })
 
 class ConnectedNavMenu extends Component {
   constructor(props) {
