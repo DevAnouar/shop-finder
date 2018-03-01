@@ -1,4 +1,5 @@
 import {SET_USER_LOCATION, SET_NEARBY_SHOPS, NEARBY_SHOPS_FETCHED} from "../constants/action-types";
+import page from "./page";
 
 const initialState = {
   userLocation: {
@@ -41,6 +42,6 @@ const nearbyShops = (state = {}, action = {}) => {
   }
 }
 
-const reducers = { userLocation, nearbyShops }
+const reducers = { userLocation, nearbyShops, page }
 
 export default reducers
