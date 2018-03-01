@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import {Form} from "semantic-ui-react";
 import RadiusOfSearchInput from "./RadiusOfSearchInput";
-import {isValidRadius} from "../utils/validation";
+import {isValidRadius} from "../utils";
 import axios from "axios/index";
 import {connect} from "react-redux";
 import {setNearbyShops} from "../actions";
 import {bindActionCreators} from "redux";
-import {push} from "react-router-redux";
 import {getUserLocation} from "../selectors";
 
 const mapStateToProps = state => ({ userLocation: getUserLocation(state) })

@@ -6,7 +6,7 @@ import GeolocationNotEnabledHeader from "./components/GeoLocationNotEnabledHeade
 import './App.css';
 import {setUserLocation} from "./actions";
 import {connect} from "react-redux";
-import {precisionRound} from "./utils/validation";
+import {precisionRound} from "./utils/index";
 import NavMenu from "./components/NavMenu";
 import Main from "./containers/Main";
 
