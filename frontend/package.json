@@ -11,6 +11,7 @@
     "react-perf-devtool": "^3.0.4",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.0",
+    "react-universal-component": "^2.8.4",
     "redux": "^3.7.2",
     "redux-first-router": "^0.0.16-next",
     "redux-first-router-link": "^1.4.2",
