@@ -27,7 +27,7 @@ class ConnectedNavMenu extends Component {
     return (
       <Menu fixed='top' color='teal' size='large' borderless>
         <Menu.Item fitted='vertically' >
-          <Transition visible={page === 'NearbyShops'}>
+          <Transition duration={50} animation='scale' visible={page === 'NearbyShops'} unmountOnHide>
             <NearbyShopsSearchForm size='small'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }}
                                    style={{ width: '103%' }} />
