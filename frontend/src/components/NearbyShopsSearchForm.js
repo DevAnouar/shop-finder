@@ -2,17 +2,20 @@ import React, { Component } from 'react'
 import {Form} from "semantic-ui-react";
 import RadiusOfSearchInput from "./RadiusOfSearchInput";
 import {isValidRadius} from "../utils";
-import axios from "axios/index";
 import {connect} from "react-redux";
-import {setNearbyShops} from "../actions";
-import {bindActionCreators} from "redux";
 import {getUserLocation} from "../selectors";
+import {NEARBY_SHOPS} from "../constants/action-types";
 
 const mapStateToProps = state => ({ userLocation: getUserLocation(state) })
-const mapDispatchToProps = dispatch => bindActionCreators({
-  setNearbyShops: nearbyShops => setNearbyShops(nearbyShops)/*,
-  goToNearbyShops: (latitude, longitude, radius) => push(`/nearby/@${latitude},${longitude},${radius}`)*/
-}, dispatch)
+const mapDispatchToProps = dispatch => ({
+  goToNearbyShops: (centerLatitude, centerLongitude, radius) =>
+    dispatch({
+      type: NEARBY_SHOPS,
+      payload: {
+        perimeter: `@${centerLatitude},${centerLongitude},${radius}`
+      }
+    })
+})
 
 class ConnectedNearbyShopsSearchForm extends Component {
   constructor(props) {
@@ -35,21 +38,12 @@ class ConnectedNearbyShopsSearchForm extends Component {
 
     const { radiusInput } = this.state
     const { latitude, longitude } = this.props.userLocation
-    const { setNearbyShops, goToNearbyShops } = this.props
+    const { goToNearbyShops } = this.props
 
     if ( isValidRadius(radiusInput) ) {
       const radius = parseFloat(radiusInput)
-
       if ( radius > 0 ) {
-        const url = `/api/shops/@${latitude},${longitude},${radiusInput}`
-
-        axios.get(url)
-          .then((response) => {
-            setNearbyShops({ shops: response.data, radiusOfSearch: radius })
-            //goToNearbyShops(latitude, longitude, radiusInput)
-          }).catch((error) => {
-          console.log(error)
-        })
+        goToNearbyShops(latitude, longitude, radiusInput)
       }
     }
   }

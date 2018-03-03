@@ -5374,18 +5374,20 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-first-router-link@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/redux-first-router-link/-/redux-first-router-link-1.4.2.tgz#2cd5274fe12539f617068bb2412f329f437813d2"
+redux-first-router-link@^0.0.3-rudy:
+  version "0.0.3-rudy"
+  resolved "https://registry.yarnpkg.com/redux-first-router-link/-/redux-first-router-link-0.0.3-rudy.tgz#bd739c6daed4eb71352e6c9defb4d945a58bcb18"
   dependencies:
     path-to-regexp "^1.7.0"
     prop-types "15.5.10"
+    rudy-history "^1.0.0"
     rudy-match-path "^0.3.0"
 
-redux-first-router@^0.0.16-next:
-  version "0.0.16-next"
-  resolved "https://registry.yarnpkg.com/redux-first-router/-/redux-first-router-0.0.16-next.tgz#493c344dd92b4c20a318a024d4dfa7d948d87d86"
+redux-first-router@^0.0.8-rudy:
+  version "0.0.8-rudy"
+  resolved "https://registry.yarnpkg.com/redux-first-router/-/redux-first-router-0.0.8-rudy.tgz#7cfbf4a5bd1beda770d43ff76ff0648d09a06078"
   dependencies:
+    rudy-history "^1.0.0"
     rudy-match-path "^0.3.0"
 
 redux@^3.7.2:
@@ -5631,6 +5633,16 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^2.0.0"
     inherits "^2.0.1"
+
+rudy-history@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/rudy-history/-/rudy-history-1.0.0.tgz#6e716bfea7b6dc00768a9423ace964fd0f168127"
+  dependencies:
+    invariant "^2.2.1"
+    loose-envify "^1.2.0"
+    resolve-pathname "^2.2.0"
+    value-equal "^0.4.0"
+    warning "^3.0.0"
 
 rudy-match-path@^0.3.0:
   version "0.3.0"

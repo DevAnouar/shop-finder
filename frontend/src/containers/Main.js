@@ -1,12 +1,16 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { Loader } from "semantic-ui-react";
+import { Container, Loader } from "semantic-ui-react";
 import universal from 'react-universal-component'
+import { isLoading } from "../selectors";
 
 const UniversalComponent = universal(props => import(`./${props.page}`), {
-  minDelay: 1000,
+  minDelay: 500,
   chunkName: props => props.page,
-  loading: () => <Loader active />
+  loading: () =>
+    <Container style={{width: window.innerWidth, height: window.innerHeight}}>
+      <Loader active>Fetching shops&hellip;</Loader>
+    </Container>
 })
 
 const mapStateToProps = ({ page, ...state }) => ({

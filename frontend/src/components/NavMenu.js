@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import {Menu, Transition} from "semantic-ui-react";
 import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
-import {getLocation} from "react-router-redux";
 
-//const mapStateToProps = state => ({ location: getLocation(state) })
+const mapStateToProps = state => ({ page: state.page })
 
-class NavMenu extends Component {
+class ConnectedNavMenu extends Component {
   constructor(props) {
     super(props)
 
@@ -23,12 +22,12 @@ class NavMenu extends Component {
 
   render() {
     const { activeItem } = this.state
-    const { pathname } = this.props.location
+    const { page } = this.props
 
     return (
       <Menu fixed='top' color='teal' size='large' borderless>
         <Menu.Item fitted='vertically' >
-          <Transition /*visible={pathname.includes('/nearby')}*/>
+          <Transition visible={page === 'NearbyShops'}>
             <NearbyShopsSearchForm size='small'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }}
                                    style={{ width: '103%' }} />
@@ -44,6 +43,6 @@ class NavMenu extends Component {
   }
 }
 
-//const NavMenu = connect(mapStateToProps)(ConnectedNavMenu)
+const NavMenu = connect(mapStateToProps)(ConnectedNavMenu)
 
 export default NavMenu

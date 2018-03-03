@@ -1,8 +1,7 @@
 import React from "react";
-import {Card, Image, Button, Transition} from "semantic-ui-react";
+import { Card, Image, Button } from "semantic-ui-react";
 
 const ShopCard = ({ name, picture }) => (
-  <Transition animation='fade' duration={500} transitionOnMount>
     <Card raised color="grey">
       <Card.Content textAlign="left">
         <Card.Header>{name}</Card.Header>
@@ -21,7 +20,6 @@ const ShopCard = ({ name, picture }) => (
         </Button.Group>
       </Card.Content>
     </Card>
-  </Transition>
 );
 
 export default ShopCard;
