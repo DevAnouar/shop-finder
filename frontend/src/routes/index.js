@@ -9,7 +9,7 @@ const routesMap = {
     fromPath: (pathSegment) => decodeURIComponent(pathSegment),
     thunk: async (dispatch, getState) => {
       const { perimeter } = getState().location.payload
-      const nearbyShops = await fetchNearbyShops(`/api/shops/${perimeter}`)
+      const nearbyShops = await fetchNearbyShops(`/api/shops/nearby/${perimeter}`)
       const radiusOfSearch = extractRadiusOfSearchFrom(perimeter)
 
       dispatch({ type: NEARBY_SHOPS_FETCHED, payload: { nearbyShops, radiusOfSearch } })
