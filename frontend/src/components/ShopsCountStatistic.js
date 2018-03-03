@@ -10,7 +10,7 @@ class ShopsCountStatistic extends Component {
     const { shopsCount, radiusOfSearch } = this.props
 
     return (
-      <Transition animation='scale' duration={1000} transitionOnMount>
+      <Transition animation='scale' duration={500} transitionOnMount>
         <Statistic color='grey'>
           <Statistic.Value>
             <Icon name='shop' />
