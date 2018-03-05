@@ -13,7 +13,10 @@ public class AuthenticationHandler {
     UserDetailsManager userDetailsManager;
 
     public void signUp(String email, String password) {
-        UserDetails user = User.builder().username(email).password(password).build();
+        UserDetails user = User.builder()
+                .username(email)
+                .password(password)
+                .build();
         userDetailsManager.createUser(user);
     }
 }
