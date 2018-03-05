@@ -32,10 +32,6 @@ class ShopEntity {
         return id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
     public String getPicture() {
         return picture;
     }
