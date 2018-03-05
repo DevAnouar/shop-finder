@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+
 @Service
 public class AuthenticationHandler {
 
@@ -16,6 +18,7 @@ public class AuthenticationHandler {
         UserDetails user = User.builder()
                 .username(email)
                 .password(password)
+                .authorities(Collections.emptyList())
                 .build();
         userDetailsManager.createUser(user);
     }

@@ -2,6 +2,6 @@ package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfin
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-interface IUsersDaoAdapter {
+public interface IUsersDaoAdapter {
     boolean save(UserDetails user);
 }
