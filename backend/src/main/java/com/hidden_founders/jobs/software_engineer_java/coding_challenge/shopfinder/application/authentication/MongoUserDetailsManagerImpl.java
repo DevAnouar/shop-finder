@@ -1,5 +1,6 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.application.authentication;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -11,10 +12,13 @@ public class MongoUserDetailsManagerImpl extends UserDetailsManagerImpl {
      * Create a new user with the supplied details.
      *
      * @param user
+     * @throws BadCredentialsException if there's already a user registered with the given email
      */
     @Override
-    public void createUser(UserDetails user) {
-        usersDaoAdapter.save(user);
+    public void createUser(UserDetails user) throws BadCredentialsException {
+        if (!usersDaoAdapter.save(user)) {
+            throw new BadCredentialsException("There is already an account with that email address: " + user.getUsername());
+        }
     }
 
     /**
