@@ -18,8 +18,9 @@ public class AuthenticationHandler {
 
     public void signUp(String email, String password) throws BadCredentialsException {
         UserDetails user = User.builder()
+                .passwordEncoder(rawPassword -> bCryptPasswordEncoder.encode(rawPassword))
                 .username(email)
-                .password(bCryptPasswordEncoder.encode(password))
+                .password(password)
                 .authorities("ROLE_USER")
                 .build();
         userDetailsManager.createUser(user);
