@@ -40,4 +40,13 @@ class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "User{\n" +
+                "\tid: " + id + '\n' +
+                "\temail: " + email + '\n' +
+                "\tpassword: " + password + '\n' +
+                '}';
+    }
 }
