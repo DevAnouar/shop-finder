@@ -19,7 +19,7 @@ public class ShopsController {
     @Autowired
     private MappingFacade mappingFacade;
 
-    @RequestMapping(value = "nearby/@{userLatitude},{userLongitude},{radiusOfSearchInKm}", method = RequestMethod.GET)
+    @GetMapping("/nearby/@{userLatitude},{userLongitude},{radiusOfSearchInKm}")
     @ResponseBody
     public List<DTO> nearbyShops(@PathVariable double userLatitude, @PathVariable double userLongitude, @PathVariable double radiusOfSearchInKm) {
         return mappingFacade.mapShopsListToShopDTOsList(getNearbyShops(userLatitude, userLongitude, radiusOfSearchInKm));
