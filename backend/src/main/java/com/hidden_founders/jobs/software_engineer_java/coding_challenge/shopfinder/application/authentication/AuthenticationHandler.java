@@ -18,7 +18,7 @@ public class AuthenticationHandler {
         UserDetails user = User.builder()
                 .username(email)
                 .password(password)
-                .authorities(Collections.emptyList())
+                .authorities("ROLE_USER")
                 .build();
         userDetailsManager.createUser(user);
     }
