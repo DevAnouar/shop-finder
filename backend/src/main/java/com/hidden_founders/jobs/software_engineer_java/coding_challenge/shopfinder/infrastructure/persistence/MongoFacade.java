@@ -1,5 +1,6 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.persistence;
 
+import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.application.authentication.User;
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model.Location;
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class MongoFacade {
 
     @Autowired
     private ShopsRepository shopsRepository;
+    @Autowired
+    private UsersRepository usersRepository;
 
     public List<Shop> findShopsWithin(double centerLatitude, double centerLongitude, double radiusInKm) {
         List<ShopEntity> shopEntities = shopsRepository.findByLocationWithin(new Circle(centerLongitude, centerLatitude, radiusInKm/111.12));
@@ -26,5 +29,16 @@ public class MongoFacade {
         }
 
         return shops;
+    }
+
+    public boolean save(User user) {
+        UserEntity userEntity = new UserEntity(user.getEmail(), user.getPassword());
+        try {
+            usersRepository.save(userEntity);
+        } catch (Exception exception) {
+            return false;
+        }
+
+        return true;
     }
 }

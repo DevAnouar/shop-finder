@@ -13,7 +13,12 @@ class UserEntity {
     private String email;
     private String password;
 
-    public UserEntity() {}
+    UserEntity() {}
+
+    UserEntity(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public UserEntity(ObjectId id, String email, String password) {
         this.id = id;
