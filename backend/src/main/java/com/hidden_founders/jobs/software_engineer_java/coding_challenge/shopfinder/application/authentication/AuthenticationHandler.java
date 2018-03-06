@@ -16,6 +16,13 @@ public class AuthenticationHandler {
     @Autowired
     private Function userFactory;
 
+    /**
+     * Register a new user with the supplied details.
+     *
+     * @param email
+     * @param password
+     * @throws BadCredentialsException if there's already a user registered with the given email
+     */
     public void signUp(String email, String password) throws BadCredentialsException {
         UserDetails user = constructUser(email, password);
         userDetailsManager.createUser(user);
