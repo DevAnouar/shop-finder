@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "formsy-react": "^1.1.4",
+    "formsy-semantic-ui-react": "^0.3.2",
     "history": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
