@@ -16,7 +16,7 @@ class ConnectedNearbyShops extends Component {
     const { shops, radiusOfSearch } = this.props.nearbyShops
 
     return (
-      <Container textAlign='center' style={{ marginTop: '2.6em' }}>
+      <Container textAlign='center' style={{ marginTop: '3.3em' }}>
         <ShopsCountStatistic shopsCount={shops.length} radiusOfSearch={radiusOfSearch} />
         <ShopCardList shops={shops} />
       </Container>

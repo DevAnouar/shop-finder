@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Menu, Transition} from "semantic-ui-react";
 import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
+import SignUpModal from "./SignUpModal";
 
 const mapStateToProps = state => ({ page: state.page })
 
@@ -36,7 +37,7 @@ class ConnectedNavMenu extends Component {
 
         <Menu.Menu position='right'>
           <Menu.Item name='Log In' className='ui menu-item Change' active={activeItem === 'Log In'} onClick={this.handleItemClick} />
-          <Menu.Item name='Sign Up' className='ui menu-item Change' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} />
+          <Menu.Item name='Sign Up'><SignUpModal /></Menu.Item>
         </Menu.Menu>
       </Menu>
     )
