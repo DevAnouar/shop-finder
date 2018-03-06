@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Button, Divider, Form, Modal} from "semantic-ui-react";
+import Formsy from 'formsy-react';
 import EmailInput from "./EmailInput";
 import PasswordInput from "./PasswordInput";
 import PasswordConfirmationInput from "./PasswordConfirmationInput";
@@ -36,8 +37,8 @@ class SignUpModal extends Component {
              closeIcon>
         <Modal.Header>Sign Up</Modal.Header>
         <Modal.Content>
-          <Form>
-            <EmailInput />
+          <Form as={ (props) => <Formsy {...props} /> }>
+            <EmailInput name="email" />
             <PasswordInput />
             <PasswordConfirmationInput/>
             <Divider style={{ marginTop: '1.5em', marginBottom: '1.5em' }} />
