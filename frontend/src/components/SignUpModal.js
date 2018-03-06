@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import {Button, Divider, Form, Modal} from "semantic-ui-react";
+import EmailInput from "./EmailInput";
+import PasswordInput from "./PasswordInput";
+import PasswordConfirmationInput from "./PasswordConfirmationInput";
 
 
 class SignUpModal extends Component {
@@ -34,17 +37,9 @@ class SignUpModal extends Component {
         <Modal.Header>Sign Up</Modal.Header>
         <Modal.Content>
           <Form>
-            <Form.Input placeholder="Email address"
-                        size="big"
-                        icon="mail" />
-            <Form.Input type="password"
-                        placeholder="Create password"
-                        size="big"
-                        icon="lock" />
-            <Form.Input type="password"
-                        placeholder="Confirm password"
-                        size="big"
-                        icon="lock" />
+            <EmailInput />
+            <PasswordInput />
+            <PasswordConfirmationInput/>
             <Divider style={{ marginTop: '1.5em', marginBottom: '1.5em' }} />
             <Form.Button type="submit"
                          content="Sign up"
