@@ -2658,12 +2658,6 @@ formsy-react@^1.1.4:
     form-data-to-object "^0.2.0"
     prop-types "^15.5.10"
 
-formsy-semantic-ui-react@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/formsy-semantic-ui-react/-/formsy-semantic-ui-react-0.3.2.tgz#10cf8c59856aa40bdcebc3ac1704a0e20c8b1914"
-  dependencies:
-    prop-types "^15.6.0"
-
 forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
