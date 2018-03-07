@@ -14,3 +14,5 @@ export const extractRadiusOfSearchFrom = (perimeter) => perimeter.substr(perimet
 export const fetchNearbyShops = async (path) =>
   axios.get(path)
     .then(response => response.data)
+
+export const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,}$/
