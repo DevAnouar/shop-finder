@@ -1,10 +1,14 @@
-import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../constants/action-types";
+import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/index";
 import page from "./page";
 
 const initialState = {
-  userLocation: {
-    latitude: 0.,
-    longitude: 0.
+  user: {
+    currentLocation: {
+      latitude: 0.,
+      longitude: 0.
+    },
+    email: null,
+    password: null
   },
   nearbyShops: {
     shops: [],
@@ -12,10 +16,16 @@ const initialState = {
   }
 }
 
-const userLocation = (state = initialState.userLocation, action) => {
+const user = (state = initialState.user, action) => {
   switch (action.type) {
     case SET_USER_LOCATION:
-      return { latitude: action.payload.latitude, longitude: action.payload.longitude }
+      return {
+        ...state,
+        currentLocation: {
+          latitude: action.payload.latitude,
+          longitude: action.payload.longitude
+        }
+      }
     default:
       return state
   }
@@ -31,6 +41,6 @@ const nearbyShops = (state = initialState.nearbyShops, action = {}) => {
   }
 }
 
-const reducers = { userLocation, nearbyShops, page }
+const reducers = { user, nearbyShops, page }
 
 export default reducers

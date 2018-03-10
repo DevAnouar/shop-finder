@@ -10,7 +10,7 @@ import {precisionRound} from "./utils/index";
 import NavMenu from "./components/NavMenu";
 import Main from "./containers/Main";
 
-const mapDispatchToProps = dispatch => ({ setUserLocation: userLocation => dispatch(setUserLocation(userLocation)) })
+const mapDispatchToProps = dispatch => ({ setUserLocation: (latitude, longitude) => dispatch(setUserLocation(latitude, longitude)) })
 
 class ConnectedApp extends Component {
 
@@ -37,7 +37,7 @@ class ConnectedApp extends Component {
         ? <GeolocationNotEnabledHeader />
         : coords
           ? dimmerActive &&
-            setUserLocation({ latitude: precisionRound(coords.latitude, 7), longitude: precisionRound(coords.longitude, 7) }) &&
+            setUserLocation(precisionRound(coords.latitude, 7), precisionRound(coords.longitude, 7)) &&
             this.handleCloseDimmer()
           : <Loader>Getting the location data</Loader>
 

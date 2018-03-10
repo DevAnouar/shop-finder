@@ -1,19 +1,10 @@
 import { createSelector } from "reselect";
 import { extractRadiusOfSearchFrom } from "../utils";
-import { NEARBY_SHOPS } from "../constants/action-types";
+import { NEARBY_SHOPS } from "../actions/constants";
 
-const nonMemoizedGetUserLocation = state => state.userLocation
-const nonMemoizedGetNearbyShops = state => state.nearbyShops
+export const getUserLocation = state => state.user.currentLocation
 
-export const getUserLocation = createSelector(
-  [nonMemoizedGetUserLocation],
-  userLocation => userLocation
-)
-
-export const getNearbyShops = createSelector(
-  [nonMemoizedGetNearbyShops],
-  nearbyShops => nearbyShops
-)
+export const getNearbyShops = state => state.nearbyShops
 
 export const isLoading = createSelector(
   [

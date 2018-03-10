@@ -4,7 +4,7 @@ import RadiusOfSearchInput from "./RadiusOfSearchInput";
 import {isValidRadius} from "../utils";
 import {connect} from "react-redux";
 import {getUserLocation} from "../selectors";
-import {NEARBY_SHOPS} from "../constants/action-types";
+import {NEARBY_SHOPS} from "../actions/constants/index";
 
 const mapStateToProps = state => ({ userLocation: getUserLocation(state) })
 const mapDispatchToProps = dispatch => ({

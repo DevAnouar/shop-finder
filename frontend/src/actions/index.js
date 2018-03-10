@@ -1,6 +1,17 @@
-import {SET_USER_LOCATION} from "../constants/action-types";
+import {SET_USER_LOCATION, SIGN_UP_REQUEST} from "./constants";
 
-export const setUserLocation = userLocation => ({
+export const setUserLocation = (latitude, longitude) => ({
   type: SET_USER_LOCATION,
-  payload: userLocation
+  payload: {
+    latitude,
+    longitude
+  }
+})
+
+export const signUpRequest = (email, password) => ({
+  type: SIGN_UP_REQUEST,
+  credentials: {
+    email,
+    password
+  }
 })
