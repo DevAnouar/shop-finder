@@ -1,5 +1,5 @@
 import {extractRadiusOfSearchFrom, fetchNearbyShops} from "../utils";
-import {NEARBY_SHOPS_FETCHED} from "../constants/action-types";
+import {NEARBY_SHOPS_FETCHED} from "../actions/constants";
 
 // TODO decode url for display on address bar
 const routesMap = {
