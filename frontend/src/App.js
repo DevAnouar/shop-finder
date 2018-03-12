@@ -26,20 +26,25 @@ class ConnectedApp extends Component {
 
   handleCloseDimmer = () => this.setState({ dimmerActive: false })
 
-  // TODO Fix constructor side-effects anti-pattern warning
+  componentWillReceiveProps(nextProps) {
+    const { isGeolocationAvailable, isGeolocationEnabled, coords, setUserLocation } = nextProps
+    const { dimmerActive } = this.state
+    if (isGeolocationAvailable && isGeolocationEnabled && coords && dimmerActive) {
+      setUserLocation(precisionRound(coords.latitude, 7), precisionRound(coords.longitude, 7)) &&
+      this.handleCloseDimmer()
+    }
+  }
+
   render() {
     const { dimmerActive } = this.state
-    const { isGeolocationAvailable, isGeolocationEnabled, coords, setUserLocation } = this.props;
+    const { isGeolocationAvailable, isGeolocationEnabled, coords } = this.props;
 
-    const locationInfo = !isGeolocationAvailable
-      ? <GeolocationNotSupportedHeader />
-      : !isGeolocationEnabled
-        ? <GeolocationNotEnabledHeader />
-        : coords
-          ? dimmerActive &&
-            setUserLocation(precisionRound(coords.latitude, 7), precisionRound(coords.longitude, 7)) &&
-            this.handleCloseDimmer()
-          : <Loader>Getting the location data</Loader>
+    const locationInfo = !isGeolocationAvailable ?
+      <GeolocationNotSupportedHeader />
+      : !isGeolocationEnabled ?
+        <GeolocationNotEnabledHeader />
+        : !coords &&
+        <Loader>Getting the location data</Loader>
 
     return (
       <div>
