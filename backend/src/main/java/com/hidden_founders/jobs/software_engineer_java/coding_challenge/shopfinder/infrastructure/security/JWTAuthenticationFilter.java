@@ -13,8 +13,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -25,14 +23,14 @@ import java.util.Date;
 
 import static com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.security.SecurityConstants.*;
 
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
     private final Function userFactory;
 
-    @Autowired
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, Function userFactory) {
+    JWTAuthenticationFilter(AuthenticationManager authenticationManager, Function userFactory) {
         this.authenticationManager = authenticationManager;
+        setFilterProcessesUrl("/api/users/sign-in");
         this.userFactory = userFactory;
     }
 

@@ -1,7 +1,6 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.security;
 
 import io.jsonwebtoken.Jwts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,17 +12,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 
 import static com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.security.SecurityConstants.HEADER_STRING;
 import static com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.security.SecurityConstants.SECRET;
 import static com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.security.SecurityConstants.TOKEN_PREFIX;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    @Autowired
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
+    JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
 
