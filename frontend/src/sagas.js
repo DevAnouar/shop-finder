@@ -1,8 +1,9 @@
 import { hashSync } from 'bcryptjs'
 import { call, put, take, fork } from 'redux-saga/effects'
-import {clearError, requestError, sendingRequest} from "./actions";
-import {genSalt, signUp} from "./utils";
-import {SIGN_UP_REQUEST} from "./actions/constants";
+import {clearError, requestError, sendingRequest} from "./actions"
+import {SIGN_UP_REQUEST} from "./actions/constants"
+import {genSalt} from "./services/security"
+import {signUp} from "./services/api/authentication";
 
 export function *authorize({ email, password, isRegistering }) {
   yield put(sendingRequest(true))
