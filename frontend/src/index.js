@@ -9,7 +9,11 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 if (module.hot) {
-  module.hot.accept()
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./reducers', () => {
+    const nextRootReducer = require('./reducers/index')
+    store.replaceReducer(nextRootReducer)
+  })
 }
 
 ReactDOM.render(

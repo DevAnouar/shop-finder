@@ -14,7 +14,7 @@ const store = createStore(
     ...reducers,
     location: reducer
   }),
-  compose(enhancer, applyMiddleware(middleware), applyMiddleware(sagaMiddleware))
+  compose(enhancer, applyMiddleware(middleware, sagaMiddleware))
 )
 
 sagaMiddleware.run(rootSaga)

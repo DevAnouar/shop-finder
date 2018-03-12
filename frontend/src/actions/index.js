@@ -1,4 +1,6 @@
-import {SET_USER_LOCATION, SIGN_UP_REQUEST} from "./constants";
+import {
+  CLEAR_ERROR, REQUEST_ERROR, SENDING_REQUEST, SET_USER_LOCATION, SIGN_UP_REQUEST
+} from "./constants";
 
 export const setUserLocation = (latitude, longitude) => ({
   type: SET_USER_LOCATION,
@@ -6,6 +8,20 @@ export const setUserLocation = (latitude, longitude) => ({
     latitude,
     longitude
   }
+})
+
+export const sendingRequest = sending => ({
+  type: SENDING_REQUEST,
+  sending
+})
+
+export const requestError = (errorMessage) => ({
+  type: REQUEST_ERROR,
+  error: errorMessage
+})
+
+export const clearError = () => ({
+  type: CLEAR_ERROR
 })
 
 export const signUpRequest = (email, password) => ({

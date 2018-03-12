@@ -5,8 +5,20 @@ import EmailInput from "./EmailInput";
 import PasswordInput from "./PasswordInput";
 import PasswordConfirmationInput from "./PasswordConfirmationInput";
 import {PASSWORD_REGEX} from "../utils";
+import {getAuthenticationRequestError, isSendingRequest} from "../selectors";
+import {signUpRequest} from "../actions";
+import {connect} from "react-redux";
 
-class SignUpModal extends Component {
+const mapStateToProps = state => ({
+  sendingSignUpRequest: isSendingRequest(state),
+  signUpRequestError: getAuthenticationRequestError(state)
+})
+
+const mapDispatchToProps = dispatch => ({
+  signUpRequest: ({ email, password }) => dispatch(signUpRequest(email, password))
+})
+
+class ConnectedSignUpModal extends Component {
   constructor(props) {
     super(props)
 
@@ -23,6 +35,7 @@ class SignUpModal extends Component {
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.notifyFormError = this.notifyFormError.bind(this)
+    this.sendToBackend = this.sendToBackend.bind(this)
   }
 
   handleOpen() {
@@ -33,13 +46,31 @@ class SignUpModal extends Component {
     this.setState({ modalOpen: false, invalidSubmit: false })
   }
 
+  sendToBackend(model) {
+    const { email, password } = model
+    const user = { email, password }
+    const { signUpRequest } = this.props
+
+    signUpRequest(user)
+    this.setState({ invalidSubmit: false, formModel: model })
+  }
+
   notifyFormError(model) {
     this.setState({ invalidSubmit: true, formModel: model })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.signUpRequestError !== '') {
+      this.setState({ invalidSubmit: true })
+    } else {
+      this.setState({ invalidSubmit: false })
+    }
   }
 
   render() {
     const { modalOpen, invalidSubmit, formModel } = this.state
     const { email, password, repeated_password } = formModel
+    const { sendingSignUpRequest, signUpRequestError } = this.props
 
     return (
       <Modal trigger={<Button onClick={this.handleOpen} color="teal" size="mini">Sign Up</Button>}
@@ -49,7 +80,10 @@ class SignUpModal extends Component {
              closeIcon>
         <Modal.Header>Sign Up</Modal.Header>
         <Modal.Content>
-          <Form as={ (props) => <Formsy {...props} /> } onInvalidSubmit={this.notifyFormError}
+          <Form as={ (props) => <Formsy {...props} /> }
+                onValidSubmit={this.sendToBackend}
+                onInvalidSubmit={this.notifyFormError}
+                ref="form"
                 error={invalidSubmit}>
             <EmailInput name="email"
                         value={email}
@@ -99,11 +133,17 @@ class SignUpModal extends Component {
                               <List.Icon name="x" />
                               <List.Content>You didn't confirm your password.</List.Content>
                             </Message.Item>
-                            : this.passwordConfirmationInput.props.getErrorMessage() !== null &&
+                            : this.passwordConfirmationInput.props.getErrorMessage() !== null ?
                             <Message.Item as={(props) => <List.Item {...props} />}>
                               <List.Icon name="x" />
                               <List.Content>{this.passwordConfirmationInput.props.getErrorMessage()}</List.Content>
                             </Message.Item>
+                              : signUpRequestError !== '' &&
+                              <Message.Item as={(props) => <List.Item {...props} />}>
+                                <List.Icon name="x" />
+                                <List.Content>{signUpRequestError}</List.Content>
+                              </Message.Item>
+
                   }
                 </Message.List>
               </Message>
@@ -112,6 +152,7 @@ class SignUpModal extends Component {
             <Divider style={{ marginTop: '1.5em', marginBottom: '1.5em' }} />
 
             <Form.Button type="submit"
+                         loading={sendingSignUpRequest}
                          content="Sign up"
                          size="big"
                          color="teal"
@@ -122,5 +163,7 @@ class SignUpModal extends Component {
     )
   }
 }
+
+const SignUpModal = connect(mapStateToProps, mapDispatchToProps)(ConnectedSignUpModal)
 
 export default SignUpModal

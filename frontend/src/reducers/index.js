@@ -1,5 +1,6 @@
 import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/index";
 import page from "./page";
+import {CLEAR_ERROR, REQUEST_ERROR, SENDING_REQUEST} from "../actions/constants";
 
 const initialState = {
   user: {
@@ -13,6 +14,10 @@ const initialState = {
   nearbyShops: {
     shops: [],
     radiusOfSearch: 0.
+  },
+  authentication: {
+    currentlySending: false,
+    error: ''
   }
 }
 
@@ -35,12 +40,27 @@ const nearbyShops = (state = initialState.nearbyShops, action = {}) => {
   switch (action.type) {
     case NEARBY_SHOPS_FETCHED:
       const { nearbyShops, radiusOfSearch } = action.payload
-      return { shops: [...nearbyShops], radiusOfSearch: radiusOfSearch }
+      return { shops: [...nearbyShops], radiusOfSearch }
     default:
       return state
   }
 }
 
-const reducers = { user, nearbyShops, page }
+const authentication = (state = initialState.authentication, action) => {
+  switch (action.type) {
+    case SENDING_REQUEST:
+      const { sending } = action
+      return {...state, currentlySending: sending}
+    case REQUEST_ERROR:
+      const { error } = action
+      return {...state, error}
+    case CLEAR_ERROR:
+      return {...state, error: ''}
+    default:
+      return state
+  }
+}
+
+const reducers = { user, nearbyShops, page, authentication }
 
 export default reducers

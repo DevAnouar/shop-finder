@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "bcryptjs": "^2.4.3",
+    "btoa": "^1.1.2",
     "formsy-react": "^1.1.4",
     "history": "^4.7.2",
     "react": "^16.2.0",

@@ -6,6 +6,10 @@ export const getUserLocation = state => state.user.currentLocation
 
 export const getNearbyShops = state => state.nearbyShops
 
+export const isSendingRequest = state => state.authentication.currentlySending
+
+export const getAuthenticationRequestError = state => state.authentication.error
+
 export const isLoading = createSelector(
   [
     state => state.location.type,
