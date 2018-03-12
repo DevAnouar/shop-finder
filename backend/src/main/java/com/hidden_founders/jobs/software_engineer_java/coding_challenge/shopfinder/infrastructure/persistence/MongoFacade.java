@@ -1,6 +1,5 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.persistence;
 
-import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.application.authentication.configuration.utils.Function;
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model.Location;
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.domain.model.Shop;
 import org.springframework.beans.factory.annotation.Autowired;

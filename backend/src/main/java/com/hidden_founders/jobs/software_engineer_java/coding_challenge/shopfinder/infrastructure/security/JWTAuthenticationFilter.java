@@ -1,11 +1,9 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.application.authentication.configuration.utils.Function;
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.presentation.dto.UserDTO;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
