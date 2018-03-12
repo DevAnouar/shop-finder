@@ -20,13 +20,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsManager userDetailsManager;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final Function userFactory;
 
     @Autowired
-    public WebSecurity(UserDetailsManager userDetailsManager, BCryptPasswordEncoder bCryptPasswordEncoder, Function userFactory) {
+    public WebSecurity(UserDetailsManager userDetailsManager, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsManager = userDetailsManager;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userFactory = userFactory;
     }
 
     @Override
@@ -36,7 +34,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
                 //.anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager(), userFactory))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

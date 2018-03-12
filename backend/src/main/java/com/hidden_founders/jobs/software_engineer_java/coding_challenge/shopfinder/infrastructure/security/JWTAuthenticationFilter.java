@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -19,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Date;
 
 import static com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.security.SecurityConstants.*;
@@ -26,12 +28,10 @@ import static com.hidden_founders.jobs.software_engineer_java.coding_challenge.s
 class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
-    private final Function userFactory;
 
-    JWTAuthenticationFilter(AuthenticationManager authenticationManager, Function userFactory) {
+    JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
         setFilterProcessesUrl("/api/users/sign-in");
-        this.userFactory = userFactory;
     }
 
     @Override
@@ -39,7 +39,7 @@ class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         try {
             UserDTO userDTO = new ObjectMapper()
                     .readValue(request.getInputStream(), UserDTO.class);
-            UserDetails credentials = constructUser(userDTO.getEmail(), userDTO.getPassword());
+            UserDetails credentials = new User(userDTO.getEmail(), userDTO.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -64,10 +64,5 @@ class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
                 .compact();
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
-    }
-
-    @SuppressWarnings("unchecked")
-    private UserDetails constructUser(String email, String password) {
-        return (User) userFactory.apply(email, password);
     }
 }

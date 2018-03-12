@@ -77,6 +77,10 @@ public class MongoUserDetailsManagerImpl extends UserDetailsManagerImpl {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        throw new NotImplementedException();
+        UserDetails user = usersDaoAdapter.findByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("There is no account with that email address: " + username);
+        }
+        return user;
     }
 }
