@@ -32,7 +32,7 @@ public class CustomSignInFailureHandler implements AuthenticationFailureHandler 
             out.println("{");
             if (exception instanceof BadCredentialsException) {
                 out.println("\t\"status\": \"" + HttpStatus.UNAUTHORIZED.value() + "\",");
-                out.println("\t\"message\": \"" + exception.getMessage() + "\"");
+                out.println("\t\"message\": \"" + "Invalid email address/password." + "\"");
             }
             out.println("}");
         }
