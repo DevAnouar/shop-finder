@@ -7,6 +7,8 @@ import 'semantic-ui-css/semantic.min.css';
 import { registerObserver } from "react-perf-devtool";
 import { Provider } from "react-redux";
 import store from "./store";
+import {authenticationSuccessful} from "./actions";
+import {isJwtExpired} from "./services/security";
 
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
@@ -14,6 +16,11 @@ if (module.hot) {
     const nextRootReducer = require('./reducers/index')
     store.replaceReducer(nextRootReducer)
   })
+}
+
+const jwt = localStorage.getItem("jwt")
+if (jwt && !isJwtExpired(jwt)) {
+  store.dispatch(authenticationSuccessful())
 }
 
 ReactDOM.render(

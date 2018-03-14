@@ -1,6 +1,6 @@
 import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/index";
 import page from "./page";
-import {CLEAR_ERROR, REQUEST_ERROR, SENDING_REQUEST} from "../actions/constants";
+import {AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, REQUEST_ERROR, SENDING_REQUEST} from "../actions/constants";
 
 const initialState = {
   user: {
@@ -8,8 +8,7 @@ const initialState = {
       latitude: 0.,
       longitude: 0.
     },
-    email: null,
-    password: null
+    authenticated: false
   },
   nearbyShops: {
     shops: [],
@@ -30,6 +29,11 @@ const user = (state = initialState.user, action) => {
           latitude: action.payload.latitude,
           longitude: action.payload.longitude
         }
+      }
+    case AUTHENTICATION_SUCCESSFUL:
+      return {
+        ...state,
+        authenticated: true
       }
     default:
       return state

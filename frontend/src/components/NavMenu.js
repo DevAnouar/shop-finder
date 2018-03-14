@@ -4,8 +4,13 @@ import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
 import SignUpModal from "./SignUpModal";
 import SignInModal from "./SignInModal";
+import {isAuthenticated} from "../selectors";
+import UserAccountDropdown from "./UserAccountDropdown";
 
-const mapStateToProps = state => ({ page: state.page })
+const mapStateToProps = state => ({
+  page: state.page,
+  authenticated: isAuthenticated(state)
+})
 
 class ConnectedNavMenu extends Component {
   constructor(props) {
@@ -23,7 +28,7 @@ class ConnectedNavMenu extends Component {
   }
 
   render() {
-    const { page } = this.props
+    const { page, authenticated } = this.props
 
     return (
       <Menu fixed='top' color='teal' size='large' borderless>
@@ -34,10 +39,16 @@ class ConnectedNavMenu extends Component {
           </Transition>
         </Menu.Item>
 
-        <Menu.Menu position='right'>
-          <Menu.Item name='Sign Up' fitted="horizontally"><SignUpModal /></Menu.Item>
-          <Menu.Item name='Sign In'><SignInModal /></Menu.Item>
-        </Menu.Menu>
+        {!authenticated ?
+          <Menu.Menu position='right'>
+            <Menu.Item name='Sign Up' fitted="horizontally"><SignUpModal /></Menu.Item>
+            <Menu.Item name='Sign In'><SignInModal /></Menu.Item>
+          </Menu.Menu>
+          :
+          <Menu.Menu position='right'>
+            <UserAccountDropdown />
+          </Menu.Menu>
+        }
       </Menu>
     )
   }

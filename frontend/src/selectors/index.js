@@ -10,6 +10,8 @@ export const isSendingRequest = state => state.authentication.currentlySending
 
 export const getAuthenticationRequestError = state => state.authentication.error
 
+export const isAuthenticated = state => state.user.authenticated
+
 export const isLoading = createSelector(
   [
     state => state.location.type,

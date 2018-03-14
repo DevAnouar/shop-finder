@@ -1,4 +1,5 @@
 import btoa from "btoa";
+import * as jwt from "jsonwebtoken";
 
 /**
  * Generate 16 bytes salt for bcrypt by seed. Should return the same salt for the same seed.
@@ -21,4 +22,11 @@ export const genSalt = seed => {
 
   // Adding header for bcrypt. Fake 10 rounds.
   return '$2a$10$' + salt
+}
+
+export const extractJwt = authorizationHeader => authorizationHeader.replace("Bearer ", "")
+
+export const isJwtExpired = (token) => {
+  const decodedToken = jwt.decode(token, { complete: true })
+  return decodedToken.exp < new Date().getTime();
 }

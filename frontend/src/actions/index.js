@@ -1,4 +1,5 @@
 import {
+  AUTHENTICATION_SUCCESSFUL,
   CLEAR_ERROR, REQUEST_ERROR, SENDING_REQUEST, SET_USER_LOCATION, SIGN_IN_REQUEST, SIGN_UP_REQUEST
 } from "./constants";
 
@@ -38,4 +39,8 @@ export const signInRequest = (email, password) => ({
     email,
     password
   }
+})
+
+export const authenticationSuccessful = () => ({
+  type: AUTHENTICATION_SUCCESSFUL
 })
