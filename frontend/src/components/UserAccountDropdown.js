@@ -11,7 +11,7 @@ class UserAccountDropdown extends Component {
       <Dropdown item icon={<Icon name="user circle" size="big" color="grey" style={{ marginRight: "0em" }}/>}>
         <Dropdown.Menu>
           <Dropdown.Item icon={<Icon name="sign out" color="grey"/>}
-                         text="Log Out" color="grey" />
+                         text="Log Out" />
         </Dropdown.Menu>
       </Dropdown>
     )

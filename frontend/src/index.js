@@ -19,8 +19,8 @@ if (module.hot) {
 }
 
 const jwt = localStorage.getItem("jwt")
-if (jwt && !isJwtExpired(jwt)) {
-  store.dispatch(authenticationSuccessful())
+if (jwt) {
+  !isJwtExpired(jwt) ? store.dispatch(authenticationSuccessful()) : localStorage.clear()
 }
 
 ReactDOM.render(
