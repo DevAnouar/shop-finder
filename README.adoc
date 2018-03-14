@@ -1,4 +1,4 @@
-# Shop Finder App (In Development)
+# Shop Finder App (In Progress...)
 
 This app lists shops nearby the current location of the user.
 
@@ -68,12 +68,12 @@ This command will build the frontend and include it in the jar.
 ./gradlew clean build
 ```
 
-The jar will be available in `./build/libs/shop-finder-0.0.1-SNAPSHOT.jar`
+The jar will be available in `./build/libs/shop-finder-0.1.0.M1.jar`
 
 You can then launch it with:
 
 ```
-java -jar build/libs/shop-finder-0.0.1-SNAPSHOT.jar
+java -jar build/libs/shop-finder-0.1.0.M1.jar
 ```
 
 Then, you can open http://localhost:8080[http://localhost:8080] to view the application in the browser.
@@ -87,6 +87,8 @@ The backend `build` task depends on the frontend `bundle` task.
 * https://github.com/facebook/create-react-app[Create React App] - Used to generate React app as the frontend with no build configuration
 * https://github.com/srs/gradle-node-plugin[com.moowork.node] - Gradle plugin for executing node scripts
 * https://gradle.org/[Gradle] - Dependency Management and Build tool
+* https://github.com/jwtk/jjwt[jjwt] - JSON Web Token for Java
+* https://github.com/auth0/node-jsonwebtoken[node-jsonwebtoken] - JsonWebToken implementation for node.js
 * https://www.mongodb.com/[MongoDB] - A NoSQL Document Database
 * http://modelmapper.org/[ModelMapper] - Simple, Intelligent, Object Mapping
 * https://no23reason.github.io/react-geolocated/[react-geolocated] - React Higher-Order Component for using Geolocation API
@@ -95,6 +97,7 @@ The backend `build` task depends on the frontend `bundle` task.
 * https://react.semantic-ui.com/[Semantic-UI-React] - A modern front-end development framework that empowers designers and developers by creating a shared vocabulary for *UI*
 * https://projects.spring.io/spring-boot/[Spring Boot] - Allows to create executable Spring applications with a convention over configuration approach
 * https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html[Spring MVC] - Provides Model-View-Controller (*MVC*) architecture and ready to use components to develop flexible and loosely coupled web applications
+* https://projects.spring.io/spring-security/[Spring Security] - The de-facto standard for securing Spring-based applications
 * https://yarnpkg.com/[Yarn] - A package manager for node.js modules
 
 ## Authors
