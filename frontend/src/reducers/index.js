@@ -2,7 +2,7 @@ import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/inde
 import page from "./page";
 import {
   AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, CLOSE_WELCOME_MODAL, OPEN_WELCOME_MODAL, REQUEST_ERROR,
-  SENDING_REQUEST
+  SENDING_REQUEST, SIGN_OUT
 } from "../actions/constants";
 
 const initialState = {
@@ -38,6 +38,11 @@ const user = (state = initialState.user, action) => {
       return {
         ...state,
         authenticated: true
+      }
+    case SIGN_OUT:
+      return {
+        ...state,
+        authenticated: false
       }
     default:
       return state

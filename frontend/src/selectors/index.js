@@ -22,5 +22,6 @@ export const isLoading = createSelector(
   ],
   (type, { perimeter }, { radiusOfSearch } ) => {
     if (type === NEARBY_SHOPS) return extractRadiusOfSearchFrom(perimeter) !== radiusOfSearch
+    return false
   }
 )

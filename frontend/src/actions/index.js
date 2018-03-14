@@ -1,7 +1,8 @@
 import {
   AUTHENTICATION_SUCCESSFUL,
-  CLEAR_ERROR, CLOSE_WELCOME_MODAL, OPEN_WELCOME_MODAL, REQUEST_ERROR, SENDING_REQUEST, SET_USER_LOCATION,
-  SIGN_IN_REQUEST, SIGN_UP_REQUEST
+  CLEAR_ERROR, CLOSE_WELCOME_MODAL, HOME, NEARBY_SHOPS, OPEN_WELCOME_MODAL, REQUEST_ERROR, SENDING_REQUEST,
+  SET_USER_LOCATION,
+  SIGN_IN_REQUEST, SIGN_OUT, SIGN_OUT_REQUEST, SIGN_UP_REQUEST
 } from "./constants";
 
 export const setUserLocation = (latitude, longitude) => ({
@@ -42,6 +43,14 @@ export const signInRequest = (email, password) => ({
   }
 })
 
+export const signOutRequest = () => ({
+  type: SIGN_OUT_REQUEST
+})
+
+export const signOut = () => ({
+  type: SIGN_OUT
+})
+
 export const authenticationSuccessful = () => ({
   type: AUTHENTICATION_SUCCESSFUL
 })
@@ -52,4 +61,15 @@ export const openWelcomeModal = () => ({
 
 export const closeWelcomeModal = () => ({
   type: CLOSE_WELCOME_MODAL
+})
+
+export const goToNearbyShops = (centerLatitude, centerLongitude, radius) => ({
+  type: NEARBY_SHOPS,
+  payload: {
+    perimeter: `@${centerLatitude},${centerLongitude},${radius}`
+  }
+})
+
+export const goHome = () => ({
+  type: HOME
 })

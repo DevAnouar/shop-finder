@@ -1,10 +1,10 @@
 import { hashSync } from 'bcryptjs'
 import { call, put, take, fork } from 'redux-saga/effects'
 import {
-  authenticationSuccessful, clearError, openWelcomeModal, requestError, sendingRequest,
-  signInRequest
+  authenticationSuccessful, clearError, goHome, openWelcomeModal, requestError, sendingRequest,
+  signInRequest, signOut
 } from "./actions"
-import {AUTHENTICATION_SUCCESSFUL, SIGN_IN_REQUEST, SIGN_UP_REQUEST} from "./actions/constants"
+import {AUTHENTICATION_SUCCESSFUL, SIGN_IN_REQUEST, SIGN_OUT_REQUEST, SIGN_UP_REQUEST} from "./actions/constants"
 import {genSalt} from "./services/security"
 import {signIn, signUp} from "./services/api/authentication";
 
@@ -75,7 +75,17 @@ export function *signInFlow() {
   }
 }
 
+export function *signOutFlow() {
+  while (true) {
+    yield take(SIGN_OUT_REQUEST)
+    localStorage.clear()
+    yield put(signOut())
+    yield put(goHome())
+  }
+}
+
 export default function *rootSaga() {
   yield fork(signUpFlow)
   yield fork(signInFlow)
+  yield fork(signOutFlow)
 }
