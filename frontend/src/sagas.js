@@ -1,7 +1,10 @@
 import { hashSync } from 'bcryptjs'
 import { call, put, take, fork } from 'redux-saga/effects'
-import {authenticationSuccessful, clearError, requestError, sendingRequest} from "./actions"
-import {SIGN_IN_REQUEST, SIGN_UP_REQUEST} from "./actions/constants"
+import {
+  authenticationSuccessful, clearError, openWelcomeModal, requestError, sendingRequest,
+  signInRequest
+} from "./actions"
+import {AUTHENTICATION_SUCCESSFUL, SIGN_IN_REQUEST, SIGN_UP_REQUEST} from "./actions/constants"
 import {genSalt} from "./services/security"
 import {signIn, signUp} from "./services/api/authentication";
 
@@ -46,6 +49,9 @@ export function *signUpFlow() {
 
     if (wasSuccessful) {
       yield put(clearError())
+      yield put(signInRequest(email, password))
+      yield take(AUTHENTICATION_SUCCESSFUL)
+      yield put(openWelcomeModal())
     } else {
       yield put(requestError(errorMsg))
     }

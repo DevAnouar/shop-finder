@@ -1,6 +1,7 @@
 import {
   AUTHENTICATION_SUCCESSFUL,
-  CLEAR_ERROR, REQUEST_ERROR, SENDING_REQUEST, SET_USER_LOCATION, SIGN_IN_REQUEST, SIGN_UP_REQUEST
+  CLEAR_ERROR, CLOSE_WELCOME_MODAL, OPEN_WELCOME_MODAL, REQUEST_ERROR, SENDING_REQUEST, SET_USER_LOCATION,
+  SIGN_IN_REQUEST, SIGN_UP_REQUEST
 } from "./constants";
 
 export const setUserLocation = (latitude, longitude) => ({
@@ -43,4 +44,12 @@ export const signInRequest = (email, password) => ({
 
 export const authenticationSuccessful = () => ({
   type: AUTHENTICATION_SUCCESSFUL
+})
+
+export const openWelcomeModal = () => ({
+  type: OPEN_WELCOME_MODAL
+})
+
+export const closeWelcomeModal = () => ({
+  type: CLOSE_WELCOME_MODAL
 })

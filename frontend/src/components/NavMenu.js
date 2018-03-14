@@ -6,6 +6,7 @@ import SignUpModal from "./SignUpModal";
 import SignInModal from "./SignInModal";
 import {isAuthenticated} from "../selectors";
 import UserAccountDropdown from "./UserAccountDropdown";
+import WelcomeModal from "./WelcomeModal";
 
 const mapStateToProps = state => ({
   page: state.page,
@@ -46,6 +47,7 @@ class ConnectedNavMenu extends Component {
           </Menu.Menu>
           :
           <Menu.Menu position='right'>
+            <WelcomeModal />
             <UserAccountDropdown />
           </Menu.Menu>
         }

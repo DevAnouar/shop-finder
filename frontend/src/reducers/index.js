@@ -1,6 +1,9 @@
 import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/index";
 import page from "./page";
-import {AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, REQUEST_ERROR, SENDING_REQUEST} from "../actions/constants";
+import {
+  AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, CLOSE_WELCOME_MODAL, OPEN_WELCOME_MODAL, REQUEST_ERROR,
+  SENDING_REQUEST
+} from "../actions/constants";
 
 const initialState = {
   user: {
@@ -16,7 +19,8 @@ const initialState = {
   },
   authentication: {
     currentlySending: false,
-    error: ''
+    error: '',
+    welcomeModalOpen: false
   }
 }
 
@@ -60,6 +64,10 @@ const authentication = (state = initialState.authentication, action) => {
       return {...state, error}
     case CLEAR_ERROR:
       return {...state, error: ''}
+    case OPEN_WELCOME_MODAL:
+      return {...state, welcomeModalOpen: true}
+    case CLOSE_WELCOME_MODAL:
+      return {...state, welcomeModalOpen: false}
     default:
       return state
   }

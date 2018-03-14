@@ -4,6 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.ui.menu-item.Change:hover {
-  color: 	#008080!important;
+.welcome-modal {
+  background: url("https://i.imgur.com/2WWp1qd.jpg") no-repeat!important;
+  background-size: 100%!important;
 }
