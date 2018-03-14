@@ -70,8 +70,6 @@ class ConnectedSignInModal extends Component {
     const { email, password } = formModel
     const { sendingSignInRequest, signInRequestError, modalOpen } = this.props
 
-    console.log(modalOpen)
-
     return (
       <Modal trigger={<Button onClick={this.handleOpen} color="teal" size="mini" style={{ width: "6.75em" }}>Sign In</Button>}
              open={modalOpen}
