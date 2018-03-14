@@ -3,6 +3,7 @@ import {Menu, Transition} from "semantic-ui-react";
 import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
 import SignUpModal from "./SignUpModal";
+import SignInModal from "./SignInModal";
 
 const mapStateToProps = state => ({ page: state.page })
 
@@ -22,21 +23,20 @@ class ConnectedNavMenu extends Component {
   }
 
   render() {
-    const { activeItem } = this.state
     const { page } = this.props
 
     return (
       <Menu fixed='top' color='teal' size='large' borderless>
         <Menu.Item fitted='vertically' >
-          <Transition duration={50} visible={page === 'NearbyShops'} unmountOnHide>
+          <Transition duration={20} visible={page === 'NearbyShops'} unmountOnHide>
             <NearbyShopsSearchForm size='medium'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }} />
           </Transition>
         </Menu.Item>
 
         <Menu.Menu position='right'>
-          <Menu.Item name='Log In' className='ui menu-item Change' active={activeItem === 'Log In'} onClick={this.handleItemClick} />
-          <Menu.Item name='Sign Up'><SignUpModal /></Menu.Item>
+          <Menu.Item name='Sign Up' fitted="horizontally"><SignUpModal /></Menu.Item>
+          <Menu.Item name='Sign In'><SignInModal /></Menu.Item>
         </Menu.Menu>
       </Menu>
     )

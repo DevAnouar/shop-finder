@@ -1,9 +1,9 @@
 import { hashSync } from 'bcryptjs'
 import { call, put, take, fork } from 'redux-saga/effects'
 import {clearError, requestError, sendingRequest} from "./actions"
-import {SIGN_UP_REQUEST} from "./actions/constants"
+import {SIGN_IN_REQUEST, SIGN_UP_REQUEST} from "./actions/constants"
 import {genSalt} from "./services/security"
-import {signUp} from "./services/api/authentication";
+import {signIn, signUp} from "./services/api/authentication";
 
 export function *authorize({ email, password, isRegistering }) {
   yield put(sendingRequest(true))
@@ -11,12 +11,23 @@ export function *authorize({ email, password, isRegistering }) {
   try {
     const salt = genSalt(email)
     const hash = hashSync(password, salt)
-    let status
+    let status = {
+      wasSuccessful: false,
+      errorMsg: ''
+    }
 
     if (isRegistering) {
-      status = yield call(signUp, { email, password: hash })
+      const wasSuccessful = yield call(signUp, { email, password: hash })
+      status = wasSuccessful ?
+        { ...status, wasSuccessful }
+        : { ...status, errorMsg: 'Email address is already taken.' }
     } else {
       // TODO implement sign-in api call
+      const response = yield call(signIn, { email, password: hash })
+      status = {
+        wasSuccessful: response.status === "200",
+        errorMsg: response.message !== undefined ? response.message : ''
+      }
     }
 
     return status
@@ -30,16 +41,32 @@ export function *signUpFlow() {
     const request = yield take(SIGN_UP_REQUEST)
     const { email, password } = request.credentials
 
-    const wasSuccessful = yield call(authorize, { email, password, isRegistering: true })
+    const { wasSuccessful, errorMsg } = yield call(authorize, { email, password, isRegistering: true })
 
     if (wasSuccessful) {
       yield put(clearError())
     } else {
-      yield put(requestError('Email address is already taken'))
+      yield put(requestError(errorMsg))
+    }
+  }
+}
+
+export function *signInFlow() {
+  while (true) {
+    const request = yield take(SIGN_IN_REQUEST)
+    const { email, password } = request.credentials
+
+    const { wasSuccessful, errorMsg } = yield call(authorize, { email, password, isRegistering: false })
+
+    if (wasSuccessful) {
+      yield put(clearError())
+    } else {
+      yield put(requestError(errorMsg))
     }
   }
 }
 
 export default function *rootSaga() {
   yield fork(signUpFlow)
+  yield fork(signInFlow)
 }

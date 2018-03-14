@@ -60,7 +60,7 @@ class ConnectedSignUpModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.signUpRequestError !== '') {
+    if (this.state.modalOpen && nextProps.signUpRequestError !== '') {
       this.setState({ invalidSubmit: true })
     } else {
       this.setState({ invalidSubmit: false })
@@ -73,7 +73,7 @@ class ConnectedSignUpModal extends Component {
     const { sendingSignUpRequest, signUpRequestError } = this.props
 
     return (
-      <Modal trigger={<Button onClick={this.handleOpen} color="teal" size="mini">Sign Up</Button>}
+      <Modal trigger={<Button onClick={this.handleOpen} color="grey" size="mini">Register</Button>}
              open={modalOpen}
              onClose={this.handleClose}
              size="tiny"
@@ -83,7 +83,7 @@ class ConnectedSignUpModal extends Component {
           <Form as={ (props) => <Formsy {...props} /> }
                 onValidSubmit={this.sendToBackend}
                 onInvalidSubmit={this.notifyFormError}
-                ref="form"
+                ref="sign-up-form"
                 error={invalidSubmit}>
             <EmailInput name="email"
                         value={email}
@@ -92,6 +92,7 @@ class ConnectedSignUpModal extends Component {
                         innerRef={ c => this.emailInput = c }
                         required />
             <PasswordInput name="password"
+                           placeholder="Create password"
                            value={password}
                            validations={{ matchRegexp: PASSWORD_REGEX, minLength: 8 }}
                            validationErrors={{ matchRegexp: 'Password must contain at least one upper case letter, one lower case letter, and one number.', minLength: 'Password must contain at least 8 characters.' }}
@@ -143,7 +144,6 @@ class ConnectedSignUpModal extends Component {
                                 <List.Icon name="x" />
                                 <List.Content>{signUpRequestError}</List.Content>
                               </Message.Item>
-
                   }
                 </Message.List>
               </Message>

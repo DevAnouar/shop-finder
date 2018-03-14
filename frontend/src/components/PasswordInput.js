@@ -14,11 +14,11 @@ class PasswordInput extends Component {
   }
 
   render() {
-    const { getValue } = this.props
+    const { getValue, placeholder } = this.props
 
     return (
       <Form.Input type="password"
-                  placeholder="Create password"
+                  placeholder={placeholder}
                   onChange={this.handleChange}
                   value={getValue()}
                   size="big"
