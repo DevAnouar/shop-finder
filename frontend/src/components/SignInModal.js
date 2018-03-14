@@ -5,16 +5,19 @@ import Formsy from 'formsy-react';
 import EmailInput from "./EmailInput";
 import PasswordInput from "./PasswordInput";
 import {connect} from "react-redux";
-import {getAuthenticationRequestError, isSendingRequest} from "../selectors";
-import {signInRequest} from "../actions";
+import {getAuthenticationRequestError, isSendingRequest, isSignInModalOpen} from "../selectors";
+import {closeSignInModal, openSignInModal, signInRequest} from "../actions";
 
 const mapStateToProps = state => ({
   sendingSignInRequest: isSendingRequest(state),
-  signInRequestError: getAuthenticationRequestError(state)
+  signInRequestError: getAuthenticationRequestError(state),
+  modalOpen: isSignInModalOpen(state)
 })
 
 const mapDispatchToProps = dispatch => ({
-  signInRequest: ({ email, password }) => dispatch(signInRequest(email, password))
+  signInRequest: ({ email, password }) => dispatch(signInRequest(email, password)),
+  openSignInModal: () => dispatch(openSignInModal()),
+  closeSignInModal: () => dispatch(closeSignInModal())
 })
 
 class ConnectedSignInModal extends Component {
@@ -22,7 +25,6 @@ class ConnectedSignInModal extends Component {
     super(props)
 
     this.state = {
-      modalOpen: false,
       invalidSubmit: false,
       formModel: {
         email: '',
@@ -37,11 +39,11 @@ class ConnectedSignInModal extends Component {
   }
 
   handleOpen() {
-    this.setState({ modalOpen: true })
+    this.props.openSignInModal()
   }
 
   handleClose() {
-    this.setState({ modalOpen: false, invalidSubmit: false })
+    this.setState({ invalidSubmit: false }, this.props.closeSignInModal)
   }
 
   sendToBackend(model) {
@@ -56,7 +58,7 @@ class ConnectedSignInModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.modalOpen && nextProps.signInRequestError !== '') {
+    if (this.props.modalOpen && nextProps.signInRequestError !== '') {
       this.setState({ invalidSubmit: true })
     } else {
       this.setState({ invalidSubmit: false })
@@ -64,9 +66,11 @@ class ConnectedSignInModal extends Component {
   }
 
   render() {
-    const { modalOpen, invalidSubmit, formModel } = this.state
+    const { invalidSubmit, formModel } = this.state
     const { email, password } = formModel
-    const { sendingSignInRequest, signInRequestError } = this.props
+    const { sendingSignInRequest, signInRequestError, modalOpen } = this.props
+
+    console.log(modalOpen)
 
     return (
       <Modal trigger={<Button onClick={this.handleOpen} color="teal" size="mini" style={{ width: "6.75em" }}>Sign In</Button>}

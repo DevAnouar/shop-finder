@@ -14,6 +14,8 @@ export const isAuthenticated = state => state.user.authenticated
 
 export const isWelcomeModalOpen = state => state.authentication.welcomeModalOpen
 
+export const isSignInModalOpen = state => state.authentication.signInModalOpen
+
 export const isLoading = createSelector(
   [
     state => state.location.type,

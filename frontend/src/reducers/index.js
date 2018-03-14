@@ -1,7 +1,8 @@
 import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/index";
 import page from "./page";
 import {
-  AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, CLOSE_WELCOME_MODAL, OPEN_WELCOME_MODAL, REQUEST_ERROR,
+  AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, CLOSE_SIGN_IN_MODAL, CLOSE_WELCOME_MODAL, OPEN_SIGN_IN_MODAL,
+  OPEN_WELCOME_MODAL, REQUEST_ERROR,
   SENDING_REQUEST, SIGN_OUT
 } from "../actions/constants";
 
@@ -20,6 +21,7 @@ const initialState = {
   authentication: {
     currentlySending: false,
     error: '',
+    signInModalOpen: false,
     welcomeModalOpen: false
   }
 }
@@ -73,6 +75,10 @@ const authentication = (state = initialState.authentication, action) => {
       return {...state, welcomeModalOpen: true}
     case CLOSE_WELCOME_MODAL:
       return {...state, welcomeModalOpen: false}
+    case OPEN_SIGN_IN_MODAL:
+      return {...state, signInModalOpen: true}
+    case CLOSE_SIGN_IN_MODAL:
+      return {...state, signInModalOpen: false}
     default:
       return state
   }

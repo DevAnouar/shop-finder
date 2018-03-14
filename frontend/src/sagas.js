@@ -1,7 +1,7 @@
 import { hashSync } from 'bcryptjs'
 import { call, put, take, fork } from 'redux-saga/effects'
 import {
-  authenticationSuccessful, clearError, goHome, openWelcomeModal, requestError, sendingRequest,
+  authenticationSuccessful, clearError, closeSignInModal, goHome, openWelcomeModal, requestError, sendingRequest,
   signInRequest, signOut
 } from "./actions"
 import {AUTHENTICATION_SUCCESSFUL, SIGN_IN_REQUEST, SIGN_OUT_REQUEST, SIGN_UP_REQUEST} from "./actions/constants"
@@ -69,6 +69,7 @@ export function *signInFlow() {
       yield put(clearError())
       localStorage.setItem("jwt", jwt)
       yield put(authenticationSuccessful())
+      yield put(closeSignInModal())
     } else {
       yield put(requestError(errorMsg))
     }
