@@ -4,6 +4,7 @@ import {isAuthenticated} from "../selectors";
 import {openSignInModal} from "../actions";
 import {connect} from "react-redux";
 import {dislikeShop} from "../services/api/nearby-shops";
+import {likeShop} from "../services/api/preferred-shops";
 
 const mapStateToProps = state => ({
   authenticated: isAuthenticated(state)
@@ -40,6 +41,11 @@ class ConnectedShopCard extends Component {
 
   handleLike() {
     this.lazyRegister()
+
+    const { authenticated, shopId } = this.props
+    if (authenticated) {
+      likeShop(shopId)
+    }
   }
 
   render() {
