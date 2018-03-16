@@ -1,7 +1,8 @@
 import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/index";
 import page from "./page";
 import {
-  AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, CLOSE_SIGN_IN_MODAL, CLOSE_WELCOME_MODAL, OPEN_SIGN_IN_MODAL,
+  AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, CLEAR_PREFERRED_SHOPS, CLOSE_SIGN_IN_MODAL, CLOSE_WELCOME_MODAL,
+  OPEN_SIGN_IN_MODAL,
   OPEN_WELCOME_MODAL, PREFERRED_SHOPS_FETCHED, REQUEST_ERROR,
   SENDING_REQUEST, SIGN_OUT
 } from "../actions/constants";
@@ -67,6 +68,8 @@ const preferredShops = (state = initialState.preferredShops, action = {}) => {
     case PREFERRED_SHOPS_FETCHED:
       const { preferredShops } = action.payload
       return preferredShops
+    case CLEAR_PREFERRED_SHOPS:
+      return []
     default:
       return state
   }

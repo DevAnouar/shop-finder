@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Menu, Transition} from "semantic-ui-react";
+import {Button, Menu, Transition} from "semantic-ui-react";
 import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
 import SignUpModal from "./SignUpModal";
@@ -8,10 +8,15 @@ import {getPage, isAuthenticated} from "../selectors";
 import UserAccountDropdown from "./UserAccountDropdown";
 import WelcomeModal from "./WelcomeModal";
 import Link from "redux-first-router-link";
+import {goToPreferredShops} from "../actions";
 
 const mapStateToProps = state => ({
   page: getPage(state),
   authenticated: isAuthenticated(state)
+})
+
+const mapDispatchToProps = dispatch => ({
+  goToPreferredShops: () => dispatch(goToPreferredShops())
 })
 
 class ConnectedNavMenu extends Component {
@@ -30,7 +35,7 @@ class ConnectedNavMenu extends Component {
   }
 
   render() {
-    const { page, authenticated } = this.props
+    const { page, authenticated, goToPreferredShops } = this.props
 
     return (
       <Menu fixed='top' color='teal' size='large' borderless>
@@ -49,7 +54,7 @@ class ConnectedNavMenu extends Component {
           :
           <Menu.Menu position='right'>
             <WelcomeModal />
-            <Link to="/shops/preferred"><Menu.Item name='My Preferred Shops' /></Link>
+            <Menu.Item name='My Preferred Shops' fitted="horizontally"><Button onClick={goToPreferredShops} content="My Preferred Shops" color="teal" /></Menu.Item>
             <UserAccountDropdown />
           </Menu.Menu>
         }
@@ -58,6 +63,6 @@ class ConnectedNavMenu extends Component {
   }
 }
 
-const NavMenu = connect(mapStateToProps)(ConnectedNavMenu)
+const NavMenu = connect(mapStateToProps, mapDispatchToProps)(ConnectedNavMenu)
 
 export default NavMenu

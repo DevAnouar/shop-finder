@@ -30,7 +30,3 @@ export const isJwtExpired = (token) => {
   const decodedToken = jwt.decode(token, { complete: true })
   return decodedToken.exp < new Date().getTime();
 }
-
-export const AUTHORIZATION_HEADER = {
-  Authorization: `Bearer ${localStorage.getItem("jwt")}`
-}

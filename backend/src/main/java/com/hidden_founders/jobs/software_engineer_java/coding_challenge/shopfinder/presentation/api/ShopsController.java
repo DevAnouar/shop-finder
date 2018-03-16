@@ -8,6 +8,8 @@ import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfind
 import com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.object_mapping.MappingFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,6 +76,12 @@ public class ShopsController {
     }
 
     private String getAuthenticatedUserEmail() {
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String user = "anonymousUser";
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            user = authentication.getName();
+        }
+
+        return user;
     }
 }
