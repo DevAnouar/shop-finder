@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PreferShopHandler {
+public class PreferShopsHandler {
 
     @Autowired
     private IPreferredShopsDaoAdapter preferredShopsDaoAdapter;

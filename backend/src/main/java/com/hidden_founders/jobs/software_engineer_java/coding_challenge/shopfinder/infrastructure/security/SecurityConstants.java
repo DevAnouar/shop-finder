@@ -8,7 +8,6 @@ class SecurityConstants {
     static final String REALM_PREFIX = "realm=";
     static final String AUTHORIZATION_HEADER_STRING = "Authorization";
     static final String AUTHENTICATE_HEADER_STRING = "WWW-Authenticate";
-    static final String NEARBY_SHOPS_URL = "/shops/nearby/**";
-    static final String SIGN_UP_URL = "/users/sign-up";
-    static final String BLACKLIST_SHOP_URL = "/shops/{[a-f\\d]{24}}/dislike";
+    static final String NEARBY_SHOPS_URL = "/api/shops/nearby/**";
+    static final String SIGN_UP_URL = "/api/users/sign-up";
 }
