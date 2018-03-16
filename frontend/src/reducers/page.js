@@ -3,6 +3,7 @@ import {NOT_FOUND} from "redux-first-router";
 const components = {
   HOME: 'Home',
   NEARBY_SHOPS: 'NearbyShops',
+  PREFERRED_SHOPS: 'PreferredShops',
   [NOT_FOUND]: 'Home'
 }
 
