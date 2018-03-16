@@ -38,7 +38,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/**").permitAll()
                 .antMatchers(HttpMethod.GET, SecurityConstants.NEARBY_SHOPS_URL).permitAll()
                 .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated()
@@ -53,6 +52,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(customAuthenticationProvider)
                 .userDetailsService(userDetailsManager)
                 .passwordEncoder(bCryptPasswordEncoder);
+    }
+
+    @Override
+    public void configure(org.springframework.security.config.annotation.web.builders.WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources");
     }
 
     @Bean
