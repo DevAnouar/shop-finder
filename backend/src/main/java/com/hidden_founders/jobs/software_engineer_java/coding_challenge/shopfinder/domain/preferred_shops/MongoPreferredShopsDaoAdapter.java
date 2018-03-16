@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class MongoPreferredShopsDaoAdapter implements IPreferredShopsDaoAdapter {
+class MongoPreferredShopsDaoAdapter implements IPreferredShopsDaoAdapter {
 
     private final MongoFacade mongoFacade;
 
     @Autowired
-    public MongoPreferredShopsDaoAdapter(MongoFacade mongoFacade) {
+    MongoPreferredShopsDaoAdapter(MongoFacade mongoFacade) {
         this.mongoFacade = mongoFacade;
     }
 
