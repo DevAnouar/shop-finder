@@ -13,35 +13,40 @@ class BlacklistedShopEntity {
     private String user;
     private ObjectId shop;
 
-    public BlacklistedShopEntity() {}
+    BlacklistedShopEntity() {}
 
-    public BlacklistedShopEntity(ObjectId id, String user, ObjectId shop) {
+    BlacklistedShopEntity(ObjectId id, String user, ObjectId shop) {
         this.id = id;
         this.user = user;
         this.shop = shop;
     }
 
-    public ObjectId getId() {
+    BlacklistedShopEntity(String user, ObjectId shop) {
+        this.user = user;
+        this.shop = shop;
+    }
+
+    ObjectId getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    void setId(ObjectId id) {
         this.id = id;
     }
 
-    public String getUser() {
+    String getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    void setUser(String user) {
         this.user = user;
     }
 
-    public ObjectId getShop() {
+    ObjectId getShop() {
         return shop;
     }
 
-    public void setShop(ObjectId shop) {
+    void setShop(ObjectId shop) {
         this.shop = shop;
     }
 
