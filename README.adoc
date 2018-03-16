@@ -18,7 +18,7 @@ A MongoDB dump with ~300 shops is provided. To import the data, you need to extr
 mongorestore --db shop_finder shop_finder/
 ```
 
-→ → A _shop_finder_ database will be created with _shops_, _blacklisted_shops_, and _users_ collections.
+→ → A _shop_finder_ database will be created with _shops_, _blacklisted_shops_, _preferred_shops_, and _users_ collections.
 
 → → Dump File : https://github.com/DevAnouar/shop-finder/blob/master/shop-finder-db.zip[here]
 
