@@ -10,4 +10,5 @@ class SecurityConstants {
     static final String AUTHENTICATE_HEADER_STRING = "WWW-Authenticate";
     static final String NEARBY_SHOPS_URL = "/shops/nearby/**";
     static final String SIGN_UP_URL = "/users/sign-up";
+    static final String BLACKLIST_SHOP_URL = "/shops/{[a-f\\d]{24}}/dislike";
 }

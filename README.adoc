@@ -68,12 +68,12 @@ This command will build the frontend and include it in the jar.
 ./gradlew clean build
 ```
 
-The jar will be available in `./build/libs/shop-finder-0.1.0.M1.jar`
+The jar will be available in `./build/libs/shop-finder-0.1.0.M2.jar`
 
 You can then launch it with:
 
 ```
-java -jar build/libs/shop-finder-0.1.0.M1.jar
+java -jar build/libs/shop-finder-0.1.0.M2.jar
 ```
 
 Then, you can open http://localhost:8080[http://localhost:8080] to view the application in the browser.

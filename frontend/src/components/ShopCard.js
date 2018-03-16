@@ -3,6 +3,7 @@ import { Card, Image, Button } from "semantic-ui-react";
 import {isAuthenticated} from "../selectors";
 import {openSignInModal} from "../actions";
 import {connect} from "react-redux";
+import {dislikeShop} from "../services/api/nearby-shops";
 
 const mapStateToProps = state => ({
   authenticated: isAuthenticated(state)
@@ -30,6 +31,11 @@ class ConnectedShopCard extends Component {
 
   handleDislike() {
     this.lazyRegister()
+
+    const { authenticated, shopId } = this.props
+    if (authenticated) {
+      dislikeShop(shopId)
+    }
   }
 
   handleLike() {
@@ -64,4 +70,4 @@ class ConnectedShopCard extends Component {
 
 const ShopCard = connect(mapStateToProps, mapDispatchToProps)(ConnectedShopCard)
 
-export default ShopCard;
+export default ShopCard

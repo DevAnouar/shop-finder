@@ -3,7 +3,7 @@ import {NOT_FOUND} from "redux-first-router";
 const components = {
   HOME: 'Home',
   NEARBY_SHOPS: 'NearbyShops',
-  [NOT_FOUND]: 'NotFound'
+  [NOT_FOUND]: 'Home'
 }
 
 export default (state = 'HOME', action = {}) =>
