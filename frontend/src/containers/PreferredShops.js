@@ -5,25 +5,24 @@ import { connect } from "react-redux";
 import ShopsCountStatistic from "../components/ShopsCountStatistic";
 import {getNearbyShops} from "../selectors";
 
-const mapStateToProps = state => ({ nearbyShops: getNearbyShops(state) })
+const mapStateToProps = state => ({ preferredShops: getNearbyShops(state) })
 
-class ConnectedNearbyShops extends Component {
+class ConnectedPreferredShops extends Component {
   constructor(props) {
     super(props)
   }
 
   render() {
-    const { shops, radiusOfSearch } = this.props.nearbyShops
+    const preferredShops = this.props.preferredShops
 
     return (
       <Container textAlign='center' style={{ marginTop: '3.8em' }}>
-        <ShopsCountStatistic shopsCount={shops.length} radiusOfSearch={radiusOfSearch} />
-        <ShopCardList shops={shops} />
+        <ShopCardList shops={preferredShops} />
       </Container>
     )
   }
 }
 
-const NearbyShops = connect(mapStateToProps)(ConnectedNearbyShops)
+const PreferredShops = connect(mapStateToProps)(ConnectedPreferredShops)
 
-export default NearbyShops
+export default PreferredShops
