@@ -2,7 +2,9 @@ package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfin
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "blacklisted_shops")
 class BlacklistedShopEntity {
 
     @Id
