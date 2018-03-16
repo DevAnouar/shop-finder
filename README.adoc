@@ -15,12 +15,12 @@ First of all, you need to setup the MongoDB database.
 A MongoDB dump with ~300 shops is provided. To import the data, you need to extract the zip file then execute the command below :
 
 ```
-mongorestore --db shops shops/
+mongorestore --db shop_finder shop_finder/
 ```
 
-→ → A shop database will be created with a shops collection.
+→ → A _shop_finder_ database will be created with _shops_ and _users_ collections.
 
-→ → Dump File : https://github.com/hiddenfounders/web-coding-challenge/blob/master/dump-shops.zip[here]
+→ → Dump File : https://github.com/DevAnouar/shop-finder/blob/master/shop-finder-db.zip[here]
 
 
 ### Running the backend (recommended)
