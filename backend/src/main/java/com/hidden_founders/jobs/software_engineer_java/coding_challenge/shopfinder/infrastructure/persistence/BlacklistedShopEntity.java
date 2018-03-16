@@ -4,6 +4,8 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document(collection = "blacklisted_shops")
 class BlacklistedShopEntity {
 
@@ -12,16 +14,21 @@ class BlacklistedShopEntity {
 
     private String user;
     private ObjectId shop;
+    private Date blacklisted_at;
 
-    BlacklistedShopEntity() {}
+    BlacklistedShopEntity() {
+        this.blacklisted_at = new Date();
+    }
 
     BlacklistedShopEntity(ObjectId id, String user, ObjectId shop) {
+        this();
         this.id = id;
         this.user = user;
         this.shop = shop;
     }
 
     BlacklistedShopEntity(String user, ObjectId shop) {
+        this();
         this.user = user;
         this.shop = shop;
     }
@@ -56,6 +63,7 @@ class BlacklistedShopEntity {
                 "\tid: " + id + '\n' +
                 "\tuser: " + user + '\n' +
                 "\tshop: " + shop + '\n' +
+                "\tblacklisted_at: " + blacklisted_at + '\n' +
                 '}';
     }
 }
