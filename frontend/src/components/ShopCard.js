@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Card, Image, Button } from "semantic-ui-react";
-import {isAuthenticated} from "../selectors";
+import {getPage, isAuthenticated} from "../selectors";
 import {openSignInModal} from "../actions";
 import {connect} from "react-redux";
 import {dislikeShop} from "../services/api/nearby-shops";
-import {likeShop} from "../services/api/preferred-shops";
+import {likeShop, removePreferredShop} from "../services/api/preferred-shops";
 
 const mapStateToProps = state => ({
+  page: getPage(state),
   authenticated: isAuthenticated(state)
 })
 
@@ -21,6 +22,7 @@ class ConnectedShopCard extends Component {
     this.lazyRegister = this.lazyRegister.bind(this)
     this.handleDislike = this.handleDislike.bind(this)
     this.handleLike = this.handleLike.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
   }
 
   lazyRegister() {
@@ -47,9 +49,14 @@ class ConnectedShopCard extends Component {
       likeShop(shopId)
     }
   }
+  
+  handleRemove() {
+    const { shopId } = this.props
+    removePreferredShop(shopId)
+  }
 
   render() {
-    const { name, picture } = this.props
+    const { name, picture, page } = this.props
 
     return (
       <Card raised color="grey">
@@ -60,14 +67,20 @@ class ConnectedShopCard extends Component {
           <Image src={picture} size='small'/>
         </Card.Content>
         <Card.Content extra>
-          <Button.Group compact widths="2" size='small'>
-            <Button onClick={this.handleDislike} negative>
-              Dislike
+          {page === 'NearbyShops' ?
+            <Button.Group compact widths="2" size='small'>
+              <Button onClick={this.handleDislike} negative>
+                Dislike
+              </Button>
+              <Button onClick={this.handleLike} positive>
+                Like
+              </Button>
+            </Button.Group>
+            : page === 'PreferredShops' &&
+            <Button onClick={this.handleRemove} negative compact fluid>
+              Remove
             </Button>
-            <Button onClick={this.handleLike} positive>
-              Like
-            </Button>
-          </Button.Group>
+          }
         </Card.Content>
       </Card>
     )

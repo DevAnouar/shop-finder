@@ -19,6 +19,7 @@ if (module.hot) {
 }
 
 const jwt = localStorage.getItem("jwt")
+console.log(jwt)
 if (jwt) {
   !isJwtExpired(jwt) ? store.dispatch(authenticationSuccessful()) : localStorage.clear()
 }

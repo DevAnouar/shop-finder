@@ -1,5 +1,7 @@
 import axios from "axios/index";
 import {AUTHORIZATION_HEADER} from "../security";
+import store from "../../store";
+import {goToPreferredShops} from "../../actions";
 
 export const fetchPreferredShops = async () =>
   axios.get('/api/shops/preferred', {
@@ -14,4 +16,7 @@ export const likeShop = (shopId) =>
 export const removePreferredShop = (shopId) =>
   axios.delete(`/api/shops/preferred/${shopId}/remove`, {
     headers: AUTHORIZATION_HEADER
-  }).then(response => response.data)
+  }).then(response => {
+    const state = store.getState()
+    store.dispatch(goToPreferredShops())
+  })

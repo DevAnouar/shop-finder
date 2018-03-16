@@ -4,12 +4,13 @@ import NearbyShopsSearchForm from "./NearbyShopsSearchForm";
 import {connect} from "react-redux";
 import SignUpModal from "./SignUpModal";
 import SignInModal from "./SignInModal";
-import {isAuthenticated} from "../selectors";
+import {getPage, isAuthenticated} from "../selectors";
 import UserAccountDropdown from "./UserAccountDropdown";
 import WelcomeModal from "./WelcomeModal";
+import Link from "redux-first-router-link";
 
 const mapStateToProps = state => ({
-  page: state.page,
+  page: getPage(state),
   authenticated: isAuthenticated(state)
 })
 
@@ -34,7 +35,7 @@ class ConnectedNavMenu extends Component {
     return (
       <Menu fixed='top' color='teal' size='large' borderless>
         <Menu.Item fitted='vertically' >
-          <Transition duration={20} visible={page === 'NearbyShops'} unmountOnHide>
+          <Transition duration={20} visible={page !== 'Home'} unmountOnHide>
             <NearbyShopsSearchForm size='medium'
                                    action={{ color: 'teal', content: 'Search', size: 'small' }} />
           </Transition>
@@ -48,6 +49,7 @@ class ConnectedNavMenu extends Component {
           :
           <Menu.Menu position='right'>
             <WelcomeModal />
+            <Link to="/shops/preferred"><Menu.Item name='My Preferred Shops' /></Link>
             <UserAccountDropdown />
           </Menu.Menu>
         }

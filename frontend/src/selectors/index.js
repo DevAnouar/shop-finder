@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import { extractRadiusOfSearchFrom } from "../utils";
-import {NEARBY_SHOPS, PREFERRED_SHOPS} from "../actions/constants";
+import {HOME, NEARBY_SHOPS, PREFERRED_SHOPS} from "../actions/constants";
 
 export const getUserLocation = state => state.user.currentLocation
 
@@ -20,6 +20,8 @@ export const isWelcomeModalOpen = state => state.authentication.welcomeModalOpen
 
 export const isSignInModalOpen = state => state.authentication.signInModalOpen
 
+export const getPage = state => state.page
+
 export const isLoading = createSelector(
   [
     state => state.location.type,
@@ -29,7 +31,7 @@ export const isLoading = createSelector(
   ],
   (type, { perimeter, preferredShops }, { radiusOfSearch }, previousPreferredShops ) => {
     if (type === NEARBY_SHOPS) return extractRadiusOfSearchFrom(perimeter) !== radiusOfSearch
-    if (type === PREFERRED_SHOPS) return preferredShops !== previousPreferredShops
-    return false
+    if (type === PREFERRED_SHOPS) return preferredShops === previousPreferredShops
+    if (type === HOME) return false
   }
 )

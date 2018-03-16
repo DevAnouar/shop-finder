@@ -95,6 +95,6 @@ const authentication = (state = initialState.authentication, action) => {
   }
 }
 
-const reducers = { user, nearbyShops, page, authentication }
+const reducers = { user, nearbyShops, preferredShops, page, authentication }
 
 export default reducers

@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import {Icon, Statistic, Transition} from "semantic-ui-react";
+import {connect} from "react-redux";
+import {getPage} from "../selectors";
 
-class ShopsCountStatistic extends Component {
+const mapStateToProps = state => ({
+  page: getPage(state)
+})
+
+class ConnectedShopsCountStatistic extends Component {
   constructor(props) {
     super(props)
   }
 
   render() {
-    const { shopsCount, radiusOfSearch } = this.props
+    const { shopsCount, radiusOfSearch, page } = this.props
 
     return (
       <Transition animation='scale' duration={500} transitionOnMount>
@@ -16,11 +22,19 @@ class ShopsCountStatistic extends Component {
             <Icon name='shop' />
             {shopsCount}
           </Statistic.Value>
-          <Statistic.Label>Shops found within {radiusOfSearch} Km</Statistic.Label>
+          <Statistic.Label>
+            {page === 'NearbyShops' ?
+              `Shop${shopsCount === 1 ? '' : 's'} found within ${radiusOfSearch} Km`
+              : page === 'PreferredShops' &&
+              `Preferred shop${shopsCount === 1 ? '' : 's'}`
+            }
+          </Statistic.Label>
         </Statistic>
       </Transition>
     )
   }
 }
+
+const ShopsCountStatistic = connect(mapStateToProps)(ConnectedShopsCountStatistic)
 
 export default ShopsCountStatistic

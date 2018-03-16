@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Container } from 'semantic-ui-react'
 import ShopCardList from "../components/ShopCardList";
 import { connect } from "react-redux";
+import {getPreferredShops} from "../selectors";
 import ShopsCountStatistic from "../components/ShopsCountStatistic";
-import {getNearbyShops} from "../selectors";
 
-const mapStateToProps = state => ({ preferredShops: getNearbyShops(state) })
+const mapStateToProps = state => ({ preferredShops: getPreferredShops(state) })
 
 class ConnectedPreferredShops extends Component {
   constructor(props) {
@@ -17,6 +17,7 @@ class ConnectedPreferredShops extends Component {
 
     return (
       <Container textAlign='center' style={{ marginTop: '3.8em' }}>
+        <ShopsCountStatistic shopsCount={preferredShops.length} />
         <ShopCardList shops={preferredShops} />
       </Container>
     )

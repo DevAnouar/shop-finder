@@ -1,7 +1,7 @@
 import {
   AUTHENTICATION_SUCCESSFUL,
   CLEAR_ERROR, CLOSE_SIGN_IN_MODAL, CLOSE_WELCOME_MODAL, HOME, NEARBY_SHOPS, NEARBY_SHOPS_FETCHED, OPEN_SIGN_IN_MODAL,
-  OPEN_WELCOME_MODAL, PREFERRED_SHOPS_FETCHED,
+  OPEN_WELCOME_MODAL, PREFERRED_SHOPS, PREFERRED_SHOPS_FETCHED,
   REQUEST_ERROR,
   SENDING_REQUEST,
   SET_USER_LOCATION,
@@ -94,6 +94,10 @@ export const goToNearbyShops = (centerLatitude, centerLongitude, radius) => ({
   payload: {
     perimeter: `@${centerLatitude},${centerLongitude},${radius}`
   }
+})
+
+export const goToPreferredShops = () => ({
+  type: PREFERRED_SHOPS
 })
 
 export const goHome = () => ({
