@@ -44,7 +44,8 @@ public class ShopsController {
     }
 
     @Secured({ "ROLE_USER" })
-    @PostMapping("/preferred")
+    @GetMapping("/preferred")
+    @ResponseBody
     public List<DTO> preferredShops() {
         String userEmail = getAuthenticatedUserEmail();
         return mappingFacade.mapShopsListToShopDTOsList(getPreferredShopsByUser(userEmail));
@@ -58,7 +59,7 @@ public class ShopsController {
     }
 
     @Secured({ "ROLE_USER" })
-    @PostMapping("/preferred/{shopId}/remove")
+    @DeleteMapping("/preferred/{shopId}/remove")
     public boolean unmarkShopAsPreferred(@PathVariable String shopId) {
         String userEmail = getAuthenticatedUserEmail();
         return preferShopsHandler.unmarkShopAsPreferred(userEmail, shopId);
