@@ -1,6 +1,7 @@
 import {
   AUTHENTICATION_SUCCESSFUL,
-  CLEAR_ERROR, CLOSE_SIGN_IN_MODAL, CLOSE_WELCOME_MODAL, HOME, NEARBY_SHOPS, OPEN_SIGN_IN_MODAL, OPEN_WELCOME_MODAL,
+  CLEAR_ERROR, CLOSE_SIGN_IN_MODAL, CLOSE_WELCOME_MODAL, HOME, NEARBY_SHOPS, NEARBY_SHOPS_FETCHED, OPEN_SIGN_IN_MODAL,
+  OPEN_WELCOME_MODAL, PREFERRED_SHOPS_FETCHED,
   REQUEST_ERROR,
   SENDING_REQUEST,
   SET_USER_LOCATION,
@@ -12,6 +13,21 @@ export const setUserLocation = (latitude, longitude) => ({
   payload: {
     latitude,
     longitude
+  }
+})
+
+export const nearbyShopsFetched = (nearbyShops, radiusOfSearch) => ({
+  type: NEARBY_SHOPS_FETCHED,
+  payload: {
+    nearbyShops,
+    radiusOfSearch
+  }
+})
+
+export const preferredShopsFetched = (preferredShops) => ({
+  type: PREFERRED_SHOPS_FETCHED,
+  payload: {
+    preferredShops
   }
 })
 

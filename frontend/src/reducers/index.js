@@ -2,7 +2,7 @@ import {SET_USER_LOCATION, NEARBY_SHOPS_FETCHED} from "../actions/constants/inde
 import page from "./page";
 import {
   AUTHENTICATION_SUCCESSFUL, CLEAR_ERROR, CLOSE_SIGN_IN_MODAL, CLOSE_WELCOME_MODAL, OPEN_SIGN_IN_MODAL,
-  OPEN_WELCOME_MODAL, REQUEST_ERROR,
+  OPEN_WELCOME_MODAL, PREFERRED_SHOPS_FETCHED, REQUEST_ERROR,
   SENDING_REQUEST, SIGN_OUT
 } from "../actions/constants";
 
@@ -18,6 +18,7 @@ const initialState = {
     shops: [],
     radiusOfSearch: 0.
   },
+  preferredShops: [],
   authentication: {
     currentlySending: false,
     error: '',
@@ -56,6 +57,16 @@ const nearbyShops = (state = initialState.nearbyShops, action = {}) => {
     case NEARBY_SHOPS_FETCHED:
       const { nearbyShops, radiusOfSearch } = action.payload
       return { shops: [...nearbyShops], radiusOfSearch }
+    default:
+      return state
+  }
+}
+
+const preferredShops = (state = initialState.preferredShops, action = {}) => {
+  switch (action.type) {
+    case PREFERRED_SHOPS_FETCHED:
+      const { preferredShops } = action.payload
+      return preferredShops
     default:
       return state
   }

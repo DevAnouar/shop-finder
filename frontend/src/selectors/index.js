@@ -6,6 +6,8 @@ export const getUserLocation = state => state.user.currentLocation
 
 export const getNearbyShops = state => state.nearbyShops
 
+export const getPreferredShops = state => state.preferredShops
+
 export const getRadiusOfSearch = state => state.nearbyShops.radiusOfSearch
 
 export const isSendingRequest = state => state.authentication.currentlySending
