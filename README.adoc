@@ -1,4 +1,4 @@
-# Shop Finder App (In Progress...)
+# Shop Finder App
 
 This app lists shops nearby the current location of the user.
 
