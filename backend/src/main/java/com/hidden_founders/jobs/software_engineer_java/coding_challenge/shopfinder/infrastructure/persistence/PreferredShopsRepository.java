@@ -1,5 +1,6 @@
 package com.hidden_founders.jobs.software_engineer_java.coding_challenge.shopfinder.infrastructure.persistence;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -10,4 +11,7 @@ interface PreferredShopsRepository extends CrudRepository<PreferredShopEntity, S
 
     @Query("{ 'user' : ?0 }")
     List<PreferredShopEntity> findByUser(String user);
+
+    @Query(value = "{ 'user' : ?0, 'shop' : ?1 }", delete = true)
+    PreferredShopEntity deleteByUserAndShop(String user, ObjectId shop);
 }

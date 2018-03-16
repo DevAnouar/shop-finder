@@ -25,19 +25,21 @@ public class MongoFacade {
     @Autowired
     private BlacklistedShopsRepository blacklistedShopsRepository;
     @Autowired
+    private PreferredShopsRepository preferredShopsRepository;
+    @Autowired
     private UsersRepository usersRepository;
 
     public List<Shop> findShopsWithin(double centerLatitude, double centerLongitude, double radiusInKm) {
         List<ShopEntity> shopEntities = shopsRepository.findByLocationWithin(new Circle(centerLongitude, centerLatitude, radiusInKm/111.12));
         filterShopEntities(shopEntities);
 
-        List<Shop> shops = new ArrayList<>();
+        List<Shop> nearbyShops = new ArrayList<>();
         for (ShopEntity shopEntity : shopEntities) {
-            shops.add(new Shop(shopEntity.getId().toHexString(), shopEntity.getPicture(), shopEntity.getName(), shopEntity.getEmail(), shopEntity.getCity(),
+            nearbyShops.add(new Shop(shopEntity.getId().toHexString(), shopEntity.getPicture(), shopEntity.getName(), shopEntity.getEmail(), shopEntity.getCity(),
                     new Location(shopEntity.getLocation().getY(), shopEntity.getLocation().getX())));
         }
 
-        return shops;
+        return nearbyShops;
     }
 
     public boolean blacklistShop(String userEmail, String shopId) {
@@ -49,6 +51,40 @@ public class MongoFacade {
         }
 
         return true;
+    }
+
+    public boolean likeShop(String userEmail, String shopId) {
+        PreferredShopEntity preferredShopEntity = new PreferredShopEntity(userEmail, new ObjectId(shopId));
+        try {
+            preferredShopsRepository.save(preferredShopEntity);
+        } catch (Exception exception) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean unmarkShopAsPreferred(String userEmail, String shopId) {
+        try {
+            preferredShopsRepository.deleteByUserAndShop(userEmail, new ObjectId(shopId));
+        } catch (Exception exception) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public List<Shop> findPreferredShopsByUser(String userEmail) {
+        List<Shop> preferredShops = new ArrayList<>();
+        List<PreferredShopEntity> preferredShopEntities = preferredShopsRepository.findByUser(userEmail);
+
+        for (PreferredShopEntity preferredShopEntity : preferredShopEntities) {
+            ShopEntity shopEntity = shopsRepository.findById(preferredShopEntity.getShop());
+            preferredShops.add(new Shop(shopEntity.getId().toHexString(), shopEntity.getPicture(), shopEntity.getName(), shopEntity.getEmail(), shopEntity.getCity(),
+                    new Location(shopEntity.getLocation().getY(), shopEntity.getLocation().getX())));
+        }
+
+        return preferredShops;
     }
 
     public boolean saveUser(UserDetails user) {
