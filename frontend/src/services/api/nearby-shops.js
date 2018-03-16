@@ -1,6 +1,7 @@
 import axios from "axios/index";
-import {isAuthenticated} from "../../selectors";
+import {getRadiusOfSearch, getUserLocation, isAuthenticated} from "../../selectors";
 import store from "../../store";
+import {goToNearbyShops} from "../../actions";
 
 export const fetchNearbyShops = async (perimeter) =>
   axios.get(`/api/shops/nearby/${perimeter}`, {
@@ -14,4 +15,9 @@ export const dislikeShop = (shopId) =>
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
     }
-  }).then(response => response.data)
+  }).then(response => {
+    const state = store.getState()
+    const userLocation = getUserLocation(state)
+    const radiusOfSearch = getRadiusOfSearch(state)
+    store.dispatch(goToNearbyShops(userLocation.latitude, userLocation.longitude, radiusOfSearch))
+  })

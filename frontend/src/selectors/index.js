@@ -6,6 +6,8 @@ export const getUserLocation = state => state.user.currentLocation
 
 export const getNearbyShops = state => state.nearbyShops
 
+export const getRadiusOfSearch = state => state.nearbyShops.radiusOfSearch
+
 export const isSendingRequest = state => state.authentication.currentlySending
 
 export const getAuthenticationRequestError = state => state.authentication.error
