@@ -1,7 +1,8 @@
 import { hashSync } from 'bcryptjs'
 import { call, put, take, fork } from 'redux-saga/effects'
 import {
-  authenticationSuccessful, clearError, closeSignInModal, goHome, openWelcomeModal, requestError, sendingRequest,
+  authenticationSuccessful, clearError, clearPreferredShops, closeSignInModal, goHome, openWelcomeModal, requestError,
+  sendingRequest,
   signInRequest, signOut
 } from "./actions"
 import {AUTHENTICATION_SUCCESSFUL, SIGN_IN_REQUEST, SIGN_OUT_REQUEST, SIGN_UP_REQUEST} from "./actions/constants"
@@ -80,6 +81,7 @@ export function *signOutFlow() {
   while (true) {
     yield take(SIGN_OUT_REQUEST)
     localStorage.clear()
+    yield put(clearPreferredShops())
     yield put(signOut())
     yield put(goHome())
   }
